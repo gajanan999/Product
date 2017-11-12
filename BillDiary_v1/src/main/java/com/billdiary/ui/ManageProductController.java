@@ -2,7 +2,7 @@ package com.billdiary.ui;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +13,7 @@ import com.billdiary.dao.LoginDAO;
 import com.billdiary.dao.ProductDAO;
 import com.billdiary.entities.Product;
 import com.billdiary.model.ProductDetails;
-import com.billdiary.model.QuickProductDetails;
+
 import com.billdiary.utility.Constants;
 import com.billdiary.utility.URLS;
 

@@ -32,4 +32,6 @@ public class ProductDAO extends AbstractJpaDAO< Product >{
 		
 	}
 	
+	
+	
 }

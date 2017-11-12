@@ -2,10 +2,13 @@ package com.billdiary.utility;
 
 public interface URLS {
 
+	
+	/* DashBoard page  */
+	public static final String DASHBOARD_PAGE="/fxml/DashBoard.fxml";
 	/* Login page  */
 	public static final String LOGIN_PAGE="/fxml/Login.fxml";
 	/* Home page  */
-	public static final String HOME_PAGE="/fxml/Home2.fxml";
+	public static final String HOME_PAGE="/fxml/Home.fxml";
 	/* AddProductDetails page  */
 	public static final String ADD_PRODUCT_DETAILS_PAGE="/fxml/AddProductDetails.fxml";
 	/* AddProducts page  */

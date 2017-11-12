@@ -16,6 +16,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 @Controller("HomeController")
 public class HomeController {
 	
@@ -24,37 +25,19 @@ public class HomeController {
 	@FXML public StackPane homepage;
 	@FXML public  BorderPane borderpane;
 	@FXML public AnchorPane mainView;
-	
-	
-	
-	//ajcha kuytana
 	@FXML public StackPane centerStackPane;
 	@FXML public BorderPane centerBorderPane;
 	@FXML public AnchorPane lowStocks;
 	@FXML public Text mainViewTitle;
 	@FXML public Text lowstk;
-	@FXML public void showProduct()
-	{
-		LOGGER.debug("Entering Class HomeController : method :showProduct");
-		try{
-		centerBorderPane.setCenter(null);
-		SpringFxmlLoader loader=SpringFxmlLoader.getInstance();
-		StackPane manageProduct2=(StackPane)loader.load("/fxml/ManageProduct2.fxml");
-		mainViewTitle.setText("Product");
-		centerBorderPane.setCenter(manageProduct2);
-		}
-		catch(Exception e)
-		{
-			LOGGER.debug("Entering Class HomeController : method :showProduct "+e.getMessage());
-		}
-		
-	}
+	@FXML public TextFlow notificationTextFlow;
+	
 	@FXML public void showDashBoard()
 	{
 		LOGGER.debug("Entering Class HomeController : method :showDashBoard");
 		try{
 		SpringFxmlLoader loader=SpringFxmlLoader.getInstance();
-		StackPane dashBoard=(StackPane)loader.load("/fxml/DashBoard.fxml");
+		StackPane dashBoard=(StackPane)loader.load(URLS.DASHBOARD_PAGE);
 		mainViewTitle.setText("DashBoard");
 	
 		
@@ -65,8 +48,45 @@ public class HomeController {
 		}
 	}
 	
+	@FXML public void showProduct()
+	{
+		LOGGER.debug("Entering Class HomeController : method :showProduct");
+		try{
+		centerBorderPane.setCenter(null);
+		SpringFxmlLoader loader=SpringFxmlLoader.getInstance();
+		StackPane manageProduct2=(StackPane)loader.load(URLS.MANAGE_PRODUCT_PAGE);
+		mainViewTitle.setText("Product");
+		centerBorderPane.setCenter(manageProduct2);
+		}
+		catch(Exception e)
+		{
+			LOGGER.debug("Entering Class HomeController : method :showProduct "+e.getMessage());
+		}
+		
+	}
+	
+	@FXML public void showCustomer()
+	{
+		LOGGER.debug("Entering Class HomeController : method :showProduct");
+		try{
+		centerBorderPane.setCenter(null);
+		SpringFxmlLoader loader=SpringFxmlLoader.getInstance();
+		StackPane manageCustomer2=(StackPane)loader.load(URLS.MANAGE_CUSTOMER_PAGE);
+		mainViewTitle.setText("Customer");
+		centerBorderPane.setCenter(manageCustomer2);
+		}
+		catch(Exception e)
+		{
+			LOGGER.debug("Entering Class HomeController : method :showCustomer "+e.getMessage());
+		}
+		
+	}
+	
+	
+	
 	
 	@FXML public void initialize(){
+		
 		
 		
 		lowstk.setText("Only 2 apple Mobiles are remaining");
