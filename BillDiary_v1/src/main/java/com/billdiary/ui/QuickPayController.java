@@ -4,49 +4,45 @@ import java.io.File;
 import java.io.IOException;
 
 import java.io.PrintWriter;
-import java.net.URL;
+
 import java.time.LocalDate;
 
 import javax.xml.transform.TransformerException;
 
 import org.apache.fop.apps.FOPException;
-import org.apache.fop.apps.Fop;
-import org.apache.fop.apps.FopFactory;
-import org.apache.fop.apps.MimeConstants;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
+
 
 import com.billdiary.config.SpringFxmlLoader;
 import com.billdiary.model.QuickProductDetails;
-import com.billdiary.utility.Constants;
+
 import com.billdiary.utility.FOPPdfDemo;
 
-import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
-import javafx.event.EventHandler;
+
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
+
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Hyperlink;
-import javafx.scene.control.TableCell;
+
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellEditEvent;
+
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
+
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
-import javafx.util.Callback;
+
 @Controller("QuickPayController")
 public class QuickPayController  {
 	@Autowired

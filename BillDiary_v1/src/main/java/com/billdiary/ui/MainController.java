@@ -1,6 +1,6 @@
 package com.billdiary.ui;
 
-import java.sql.SQLException;
+
 
 import org.apache.log4j.Logger;
 
@@ -13,7 +13,7 @@ import com.billdiary.utility.URLS;
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.StackPane;
+
 import javafx.stage.Stage;
 
 public class MainController extends Application{
