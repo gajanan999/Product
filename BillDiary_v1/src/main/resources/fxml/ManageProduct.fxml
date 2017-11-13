@@ -5,6 +5,7 @@
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 
 <StackPane maxHeight="600.0" maxWidth="1000.0" minHeight="600.0" minWidth="1000.0" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.billdiary.ui.ManageProductController">
    <children>
@@ -19,14 +20,46 @@
                   <Separator layoutX="8.0" layoutY="133.0" prefHeight="3.0" prefWidth="964.0" />
                   <TableView fx:id="ProductTable" layoutX="10.0" layoutY="146.0" prefHeight="245.0" prefWidth="960.0">
                     <columns>
-                      <TableColumn fx:id="Id" prefWidth="75.0" text="ID (Code)" />
-                      <TableColumn fx:id="NameOfProduct" prefWidth="75.0" text="Product Name" />
-                        <TableColumn fx:id="Description" prefWidth="75.0" text="Product Description" />
-                        <TableColumn fx:id="WholesalePrice" prefWidth="75.0" text="Wholesale price" />
-                        <TableColumn fx:id="RetailPrice" prefWidth="75.0" text="Retail Price" />
-                        <TableColumn fx:id="Discount" prefWidth="75.0" text="Discount (%)" />
-                        <TableColumn fx:id="Stock" prefWidth="75.0" text="Stock" />
-                        <TableColumn fx:id="Delete" prefWidth="75.0" text="Action" />
+                      <TableColumn  prefWidth="75.0" text="ID (Code)" >
+                      <cellValueFactory>
+							<PropertyValueFactory property="productId" />
+							</cellValueFactory>
+							</TableColumn>
+                      <TableColumn  prefWidth="75.0" text="Product Name" >
+                      <cellValueFactory>
+							<PropertyValueFactory property="name" />
+							</cellValueFactory>
+							</TableColumn>
+                        <TableColumn prefWidth="75.0" text="Product Description" >
+                        <cellValueFactory>
+							<PropertyValueFactory property="description" />
+							</cellValueFactory>
+							</TableColumn>
+                        <TableColumn  prefWidth="75.0" text="Wholesale price" >
+                        <cellValueFactory>
+							<PropertyValueFactory property="wholesalePrice" />
+							</cellValueFactory>
+							</TableColumn>
+                        <TableColumn  prefWidth="75.0" text="Retail Price" >
+                        <cellValueFactory>
+							<PropertyValueFactory property="retailPrice" />
+							</cellValueFactory>
+							</TableColumn>
+                        <TableColumn  prefWidth="75.0" text="Discount (%)" >
+                        <cellValueFactory>
+							<PropertyValueFactory property="discount" />
+							</cellValueFactory>
+							</TableColumn>
+                        <TableColumn  prefWidth="75.0" text="Stock" >
+                        <cellValueFactory>
+							<PropertyValueFactory property="stock" />
+							</cellValueFactory>
+							</TableColumn>
+                        <TableColumn  prefWidth="75.0" text="Action" >
+                        <cellValueFactory>
+							<PropertyValueFactory property="Delete" />
+							</cellValueFactory>
+							</TableColumn>
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

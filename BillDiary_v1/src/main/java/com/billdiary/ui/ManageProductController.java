@@ -1,61 +1,57 @@
 package com.billdiary.ui;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.ResourceBundle;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 
 import com.billdiary.config.SpringFxmlLoader;
-import com.billdiary.dao.LoginDAO;
-import com.billdiary.dao.ProductDAO;
-import com.billdiary.entities.Product;
+
 import com.billdiary.model.ProductDetails;
 
+import com.billdiary.service.ProductService;
 import com.billdiary.utility.Constants;
 import com.billdiary.utility.URLS;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.TableColumn;
+import javafx.fxml.Initializable;
+
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
+
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 @Controller("ManageProductController")
 @Service
-public class ManageProductController {
-	//final static Logger LOGGER = Logger.getLogger(ManageProductController.class);
-	@Autowired
-	public LoginDAO loginDAO;
-	@Autowired
-	public ProductDAO productDAO;
+public class ManageProductController implements Initializable{
 	@Autowired
 	public LayoutController layoutController;
-	@FXML private TextField productName;
-	@FXML private TextField productId;
-	@FXML private TableView<ProductDetails>ProductTable;
-	@FXML private TableColumn<ProductDetails,Integer>Id;
-	@FXML private TableColumn<ProductDetails,String>NameOfProduct;
-	@FXML private TableColumn<ProductDetails,String>Description;
-	@FXML private TableColumn<ProductDetails,Double>WholesalePrice;
-	@FXML private TableColumn<ProductDetails,Double>RetailPrice;
-	@FXML private TableColumn<ProductDetails,Double>Discount;
-	@FXML private TableColumn<ProductDetails,Integer>Stock;
-	@FXML private TableColumn<ProductDetails, Hyperlink>Delete;	
-
+	//final static Logger LOGGER = Logger.getLogger(ManageProductController.class);
+	@Autowired
+	private ProductService productService;
+	List<ProductDetails> productList=new ArrayList<>();
+	@FXML
+	TextField productName;
+	@FXML 
+	TextField productId;
+	@FXML
+	private TableView < ProductDetails > ProductTable;
+	
+    private ObservableList < ProductDetails > data = FXCollections.observableArrayList();
+    
 @FXML public void searchProduct()
 {
 	System.out.println("Inside Search product");
-	ObservableList<ProductDetails> data1 = FXCollections.observableArrayList();
-	List<Product> obj = productDAO.fetchProducts();
-	ProductDetails[] pd = new ProductDetails[obj.size()];
+	ObservableList<ProductDetails> data = FXCollections.observableArrayList();
+	List<ProductDetails> obj = productService.fetchProducts();
+	int size = obj.size();
 	String ProdName = productName.getText();
 	if(productId.getText().equals(""))
 	{
@@ -63,14 +59,15 @@ public class ManageProductController {
 	}
 	Integer ProdId = Integer.parseInt(productId.getText());
 	System.out.println("prod name is:"+productName.getText());
-	 
 	boolean search=true;
-	for(int i=0;i<obj.size();i++)
-	{
-		
+	int count=0;
+	
+	for(ProductDetails pd:obj)
+	{	
+		count++;
 		if(ProdName.equals("") && ProdId==0)
 		{	System.out.println("inside if");
-			initialize();
+			initialize(null, null);
 			search=false;
 			break;
 		}
@@ -80,30 +77,19 @@ public class ManageProductController {
 		}
 		
 		System.out.println(Integer.parseInt(productId.getText()));
-		if(ProdId==(obj.get(i).getId()) && ProdName.equals(obj.get(i).getName()))
+		if(ProdId==(pd.getProductId()) && ProdName.toLowerCase().equals(pd.getName().toLowerCase()))
 		{
-			Hyperlink Delete1 = new Hyperlink();
-			pd[i]=new ProductDetails(obj.get(i).getId(), obj.get(i).getName(), obj.get(i).getWholesale_price(), obj.get(i).getRetail_price(), obj.get(i).getDescription(), obj.get(i).getStock(), obj.get(i).getDiscount(), Delete1);
-			data1.add(pd[i]);
-			System.out.println(data1.size());
-			
-			NameOfProduct.setCellValueFactory(new PropertyValueFactory<ProductDetails,String>("name"));
-			Id.setCellValueFactory(new PropertyValueFactory<ProductDetails,Integer>("productId"));
-			Description.setCellValueFactory(new PropertyValueFactory<ProductDetails,String>("description"));
-			WholesalePrice.setCellValueFactory(new PropertyValueFactory<ProductDetails,Double>("wholesalePrice"));
-			RetailPrice.setCellValueFactory(new PropertyValueFactory<ProductDetails,Double>("retailPrice"));
-			Discount.setCellValueFactory(new PropertyValueFactory<ProductDetails,Double>("discount"));
-			Stock.setCellValueFactory(new PropertyValueFactory<ProductDetails,Integer>("stock"));
-			ProductTable.setItems(data1);
-			int pid=pd[i].getProductId();
-			pd[i].getDelete().setOnAction(e->deleteButtonClicked1(pid));
+			data.add(pd);
+			ProductTable.setItems(data);
+			int pid=pd.getProductId();
+			pd.getDelete().setOnAction(e->deleteButtonClickedThroughHyperlink(pid));
 			search=false;
 			break;
 		}
-		if(i==obj.size()-1)
+		if(count>=size)
 		{
 			System.out.println("inside else");
-			ObservableList< ProductDetails> ListItems,SelectedListItem;
+			ObservableList< ProductDetails> ListItems;
 			ListItems=ProductTable.getItems();
 			System.out.println(ListItems.size());
 			while(ListItems.size()!=0)
@@ -113,32 +99,23 @@ public class ManageProductController {
 		}
 	}	
 	if(search == true)
-	{
-		for(int i =0 ; i<obj.size();i++)
+	{	
+		count = 0;
+		for(ProductDetails pd:obj)
 		{
-			if(ProdId ==(obj.get(i).getId())|| ProdName.equals(obj.get(i).getName()))
+			if(ProdId ==(pd.getProductId())|| ProdName.toLowerCase().equals(pd.getName().toLowerCase()))
 			{
-				Hyperlink Delete1 = new Hyperlink();
-				pd[i]=new ProductDetails(obj.get(i).getId(), obj.get(i).getName(), obj.get(i).getWholesale_price(), obj.get(i).getRetail_price(), obj.get(i).getDescription(), obj.get(i).getStock(), obj.get(i).getDiscount(), Delete1);
-				data1.add(pd[i]);
-				System.out.println(data1.size());
-				NameOfProduct.setCellValueFactory(new PropertyValueFactory<ProductDetails,String>("name"));
-				Id.setCellValueFactory(new PropertyValueFactory<ProductDetails,Integer>("productId"));
-				Description.setCellValueFactory(new PropertyValueFactory<ProductDetails,String>("description"));
-				WholesalePrice.setCellValueFactory(new PropertyValueFactory<ProductDetails,Double>("wholesalePrice"));
-				RetailPrice.setCellValueFactory(new PropertyValueFactory<ProductDetails,Double>("retailPrice"));
-				Discount.setCellValueFactory(new PropertyValueFactory<ProductDetails,Double>("discount"));
-				Stock.setCellValueFactory(new PropertyValueFactory<ProductDetails,Integer>("stock"));
-				ProductTable.setItems(data1);
-				int k=0;
-				int pid=pd[i].getProductId();
-				pd[i].getDelete().setOnAction(e->deleteButtonClicked1(pid));
+				data.add(pd);
+				ProductTable.setItems(data);
+				int pid=pd.getProductId();
+				pd.getDelete().setOnAction(e->deleteButtonClickedThroughHyperlink(pid));
+				count++;
 				search=false;	
 			}
-			if(i==obj.size()-1&& search ==true)
+			if(count>=obj.size()-1&& search ==true)
 			{
 				System.out.println("inside else");
-				ObservableList< ProductDetails> ListItems,SelectedListItem;
+				ObservableList< ProductDetails> ListItems;
 				ListItems=ProductTable.getItems();
 				System.out.println(ListItems.size());
 				while(ListItems.size()!=0)
@@ -152,48 +129,7 @@ public class ManageProductController {
 	productName.setText("");
 }
 
-@FXML public void initialize()
-{
-	ObservableList<ProductDetails> data = FXCollections.observableArrayList();
-	List<Product> obj = new ArrayList<Product>();
-	System.out.println("Calling Fetch Products");
-	obj = productDAO.fetchProducts();
-	 int length = obj.size();
-	 System.out.println("length is:"+length);
-	 ProductDetails[] pd = new ProductDetails[length];
-	 int count=0;
-	 for(int i=0;i<obj.size();i++)
-	 {
-		 try
-		 {
-			 Hyperlink Delete1 = new Hyperlink();
-			 pd[i]=new ProductDetails(obj.get(i).getId(), obj.get(i).getName(), obj.get(i).getWholesale_price(), obj.get(i).getRetail_price(), obj.get(i).getDescription(), obj.get(i).getStock(), obj.get(i).getDiscount(), Delete1);
-		 	 data.add(pd[i]);
-		 }
-		 catch(Exception e)
-		 {
-			 System.out.println("error is:"+e.getMessage());
-		 }
-		
-	 }	
-	 System.out.println("After calling fetch products");
-	NameOfProduct.setCellValueFactory(new PropertyValueFactory<ProductDetails,String>("name"));
-	Id.setCellValueFactory(new PropertyValueFactory<ProductDetails,Integer>("productId"));
-	Description.setCellValueFactory(new PropertyValueFactory<ProductDetails,String>("description"));
-	WholesalePrice.setCellValueFactory(new PropertyValueFactory<ProductDetails,Double>("wholesalePrice"));
-	RetailPrice.setCellValueFactory(new PropertyValueFactory<ProductDetails,Double>("retailPrice"));
-	Discount.setCellValueFactory(new PropertyValueFactory<ProductDetails,Double>("discount"));
-	Stock.setCellValueFactory(new PropertyValueFactory<ProductDetails,Integer>("stock"));
-	Delete.setCellValueFactory(new PropertyValueFactory<ProductDetails,Hyperlink>("Delete"));
-	int k=0;
-	for( k=0;k<obj.size();k++)
-	{
-		int pid=pd[k].getProductId();
-		pd[k].getDelete().setOnAction(e->deleteButtonClicked1(pid));
-	}
-	
-	ProductTable.setItems(data);
-}
+
 
 @FXML public void addNewProduct()
 {
@@ -202,15 +138,12 @@ public class ManageProductController {
 	BorderPane root = new BorderPane();
 	root.setCenter(addProduct);
 	layoutController.loadWindow(root,"Add Product Details",Constants.POPUP_WINDOW_WIDTH,Constants.POPUP_WINDOW_HEIGHT);
-	
-	
 }
 
-public void deleteButtonClicked1(int productId)
+public void deleteButtonClickedThroughHyperlink(int productId)
 {
 	System.out.println("Inside DeleteButtonClicked");
-	
-	ObservableList< ProductDetails> ListItems,SelectedListItem;
+	ObservableList< ProductDetails> ListItems;
 	ListItems=ProductTable.getItems();
 	for(int j = 0;j<ListItems.size();j++)
 	{
@@ -219,18 +152,63 @@ public void deleteButtonClicked1(int productId)
 			ListItems.remove(j);
 		}
 	}
+	productService.deleteProduct(productId);
 	
 }
-@FXML
-public void deleteButtonClicked()
+@FXML public void deleteButtonClicked()
 {
 	System.out.println("Inside DeleteButtonClicked");
-	
 	ObservableList< ProductDetails> ListItems,SelectedListItem;
 	ListItems=ProductTable.getItems();
-	
 	SelectedListItem=ProductTable.getSelectionModel().getSelectedItems();	
+	int id=SelectedListItem.get(0).getProductId();
 	SelectedListItem.forEach(ListItems::remove);
+	productService.deleteProduct(id);
+	
 	
 }
+@Override
+public void initialize(URL arg0, ResourceBundle arg1) 
+{	
+	//this.customerName.textProperty().bind(this.customer.getName());
+	System.out.println("Inside Initialize");
+	ProductTable.setItems(data);
+	populate(retrieveData());	
+}
+	
+	
+private List<ProductDetails> retrieveData(){
+	try 
+	{
+		if(productList.isEmpty())
+		{
+			productList=productService.fetchProducts();
+		}
+		System.out.println(productList.get(0).getDescription());
+	return productList;
+			
+	}
+	catch(Exception e)
+	{
+		System.out.println(e.getMessage());
+	}
+	return new ArrayList<ProductDetails>();
+}
+	
+private void populate(final List < ProductDetails > products) 
+{
+	System.out.println("inside populate");
+	if(data.isEmpty())
+	{
+        for(ProductDetails prods:products)
+        {
+        	data.add(prods);
+        	int pid=prods.getProductId();
+        	prods.getDelete().setOnAction(e->deleteButtonClickedThroughHyperlink(pid));
+        }
+       System.out.println( data.get(0).getName());
+	}
+
+}
+
 }

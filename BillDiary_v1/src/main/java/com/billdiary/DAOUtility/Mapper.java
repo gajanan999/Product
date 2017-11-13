@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.billdiary.entities.CustomerEntity;
+import com.billdiary.entities.Product;
 import com.billdiary.model.Customer;
+import com.billdiary.model.ProductDetails;
 import com.billdiary.model.User;
 import com.billdiary.model.User1;
 
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.control.Hyperlink;
 
 public class Mapper {
 	
@@ -47,5 +51,25 @@ public class Mapper {
 		
 		return customerList;
 	}
-
+	public List<ProductDetails> getProductModels(List<Product> productEntityList) {
+		List<ProductDetails> productList=new ArrayList<>();
+		
+		for(Product productEntity:productEntityList)
+		{
+			ProductDetails prod=new ProductDetails();
+			prod.setProductId(new SimpleIntegerProperty(productEntity.getId()));
+			prod.setDescription(new SimpleStringProperty(productEntity.getDescription()));
+			prod.setDiscount(new SimpleDoubleProperty(productEntity.getDiscount()));
+			prod.setName(new SimpleStringProperty(productEntity.getName()));
+			prod.setRetailPrice(new SimpleDoubleProperty(productEntity.getRetail_price()));
+			prod.setWholesalePrice(new SimpleDoubleProperty(productEntity.getWholesale_price()));
+			prod.setStock(new SimpleIntegerProperty(productEntity.getStock()));
+			prod.setDelete(new Hyperlink("Delete"));
+			productList.add(prod);
+			
+			
+		}
+		
+		return productList;
+	}
 }

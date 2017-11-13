@@ -3,9 +3,10 @@
 --insert into user2 values(2,'Gajanan','Gajanan','admin');
 create table if not exists user(id int, username varchar(20),password varchar(20),role varchar(20),primary key(id));
 --insert into user values(1,'Gajanan','Gajanan','admin');
-create table if not exists product(product_id int,name varchar(20),description varchar(20),wholesale_price double,retail_price double,discount double,stock int, primary key(product_id));
+--create SEQUENCE idOfProduct1 increment by 1 start with 101;
+create table if not exists product(product_id int ,name varchar(20),description varchar(20),wholesale_price double,retail_price double,discount double,stock int, primary key(product_id));
 
---insert into product values(101,'Mobile','Apple',30000,26500.50,0,5);
+--insert into product values(105,'Mobile','Apple',30000,26500.50,0,5);
 --insert into product values(102,'Camera','Sony',35000,29000.50,5,5);
 --insert into product values(103,'Mobile','Samsung',20000,18000.50,0,5);
 --insert into product values(104,'Laptop','Apple',65000,60000.50,0,5);
@@ -21,8 +22,8 @@ create table if not exists customer
 						,country varchar(20)
 					);
 
-insert into customer(customer_id,customer_name,address,mobile_no,city,country) values(101,'Gajanan','kfc baner','7709635664','pune','India');
-insert into customer(customer_id,customer_name,address,mobile_no,city,country) values(102,'Harshal','kfc baner','7709635664','pune','India');
+--insert into customer(customer_id,customer_name,address,mobile_no,city,country) values(101,'Gajanan','kfc baner','7709635664','pune','India');
+--insert into customer(customer_id,customer_name,address,mobile_no,city,country) values(102,'Harshal','kfc baner','7709635664','pune','India');
 --insert into customer(customer_id,customer_name) values(IDENTITY()+1,'Gajanan');
 --insert into customer(customer_id,customer_name) values(IDENTITY()+1,'Gajanan');
 

@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name = "product")
 public class Product implements Serializable {
@@ -18,7 +20,9 @@ public class Product implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue
+    
+    @GenericGenerator(name = "product_id",strategy="increment")
+	@GeneratedValue
     @Column(name = "product_id")
 	int id;
 	@Column(name = "name")
