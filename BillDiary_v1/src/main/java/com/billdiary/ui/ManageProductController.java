@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 import com.billdiary.config.SpringFxmlLoader;
 
 import com.billdiary.model.ProductDetails;
-
 import com.billdiary.service.ProductService;
+//import com.billdiary.service.ProductService;
 import com.billdiary.utility.Constants;
 import com.billdiary.utility.URLS;
 
@@ -36,6 +36,7 @@ public class ManageProductController implements Initializable{
 	//final static Logger LOGGER = Logger.getLogger(ManageProductController.class);
 	@Autowired
 	private ProductService productService;
+	
 	List<ProductDetails> productList=new ArrayList<>();
 	@FXML
 	TextField productName;
@@ -48,6 +49,7 @@ public class ManageProductController implements Initializable{
     
 @FXML public void searchProduct()
 {
+	
 	System.out.println("Inside Search product");
 	ObservableList<ProductDetails> data = FXCollections.observableArrayList();
 	List<ProductDetails> obj = productService.fetchProducts();
@@ -127,6 +129,7 @@ public class ManageProductController implements Initializable{
 	}
 	productId.setText("");
 	productName.setText("");
+	
 }
 
 
@@ -157,6 +160,7 @@ public void deleteButtonClickedThroughHyperlink(int productId)
 }
 @FXML public void deleteButtonClicked()
 {
+	
 	System.out.println("Inside DeleteButtonClicked");
 	ObservableList< ProductDetails> ListItems,SelectedListItem;
 	ListItems=ProductTable.getItems();
@@ -164,6 +168,7 @@ public void deleteButtonClickedThroughHyperlink(int productId)
 	int id=SelectedListItem.get(0).getProductId();
 	SelectedListItem.forEach(ListItems::remove);
 	productService.deleteProduct(id);
+	
 	
 	
 }
@@ -178,6 +183,7 @@ public void initialize(URL arg0, ResourceBundle arg1)
 	
 	
 private List<ProductDetails> retrieveData(){
+	
 	try 
 	{
 		if(productList.isEmpty())
@@ -193,10 +199,13 @@ private List<ProductDetails> retrieveData(){
 		System.out.println(e.getMessage());
 	}
 	return new ArrayList<ProductDetails>();
+	
+	
 }
 	
 private void populate(final List < ProductDetails > products) 
 {
+	try {
 	System.out.println("inside populate");
 	if(data.isEmpty())
 	{
@@ -206,7 +215,11 @@ private void populate(final List < ProductDetails > products)
         	int pid=prods.getProductId();
         	prods.getDelete().setOnAction(e->deleteButtonClickedThroughHyperlink(pid));
         }
-       System.out.println( data.get(0).getName());
+      // System.out.println( data.get(0).getName());   /**  Do not get element from data cause if its empty then it will cause an exception **/
+	}
+	}catch(Exception e)
+	{
+		System.out.println(e.getMessage());
 	}
 
 }

@@ -76,6 +76,7 @@ public class ManageCustomerController implements Initializable {
     	}
 
     }
+    
 
 
 	@FXML 

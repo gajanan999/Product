@@ -14,32 +14,32 @@ import javax.persistence.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
-import com.billdiary.entities.Product;
+import com.billdiary.entities.ProductEntity;
 import com.billdiary.model.User;
 import com.billdiary.utility.Constants;
 @Repository
-public class ProductDAO extends AbstractJpaDAO< Product >{
+public class ProductDAO extends AbstractJpaDAO< ProductEntity >{
 
 	@PersistenceContext
 	EntityManager entityManager;
 	
 	public ProductDAO()
 	{
-		setClazz(Product.class );
+		setClazz(ProductEntity.class );
 	}
-	public List<Product> fetchProducts()
+	public List<ProductEntity> fetchProducts()
 	{
 		//Query q=entityManager.createNativeQuery("select * from product");
 		//setClazz(Product.class);
 		
-		List<Product> p=findAll();
+		List<ProductEntity> p=findAll();
 		return p;
 		//Object[] o=(Object[]) q.getSingleResult();
 }
 	public void deleteProduct(int productId) throws ClassNotFoundException, SQLException
 	{
-		List<Product> p=findAll();
-		for(Product pr:p)
+		List<ProductEntity> p=findAll();
+		for(ProductEntity pr:p)
 		{
 			if(pr.getId()==productId)
 			{

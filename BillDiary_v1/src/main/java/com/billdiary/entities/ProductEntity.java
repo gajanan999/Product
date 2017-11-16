@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -12,31 +13,38 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "product")
-public class Product implements Serializable {
+public class ProductEntity implements Serializable {
 	
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	@Id
-    
-    @GenericGenerator(name = "product_id",strategy="increment")
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "product_id")
 	int id;
-	@Column(name = "name")
+	
+	@Column(name = "product_name")
 	String name; 
+	
 	@Column(name = "description")
 	String description;
+	
 	@Column(name = "wholesale_price")
 	double wholesale_price;
+	
 	@Column(name = "retail_price")
 	double retail_price;
+	
 	@Column(name = "discount")
 	double discount; 
+	
 	@Column(name = "stock")
 	int stock;
+	
+	
 	public int getId() {
 		return id;
 	}

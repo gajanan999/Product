@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.billdiary.entities.CustomerEntity;
-import com.billdiary.entities.Product;
+import com.billdiary.entities.ProductEntity;
 import com.billdiary.model.Customer;
 import com.billdiary.model.ProductDetails;
 import com.billdiary.model.User;
@@ -51,10 +51,10 @@ public class Mapper {
 		
 		return customerList;
 	}
-	public List<ProductDetails> getProductModels(List<Product> productEntityList) {
+	public List<ProductDetails> getProductModels(List<ProductEntity> productEntityList) {
 		List<ProductDetails> productList=new ArrayList<>();
 		
-		for(Product productEntity:productEntityList)
+		for(ProductEntity productEntity:productEntityList)
 		{
 			ProductDetails prod=new ProductDetails();
 			prod.setProductId(new SimpleIntegerProperty(productEntity.getId()));

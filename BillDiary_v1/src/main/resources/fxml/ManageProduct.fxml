@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.cell.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
@@ -20,42 +21,42 @@
                   <Separator layoutX="8.0" layoutY="133.0" prefHeight="3.0" prefWidth="964.0" />
                   <TableView fx:id="ProductTable" layoutX="10.0" layoutY="146.0" prefHeight="245.0" prefWidth="960.0">
                     <columns>
-                      <TableColumn  prefWidth="75.0" text="ID (Code)" >
+                      <TableColumn prefWidth="75.0" text="ID (Code)">
                       <cellValueFactory>
 							<PropertyValueFactory property="productId" />
 							</cellValueFactory>
 							</TableColumn>
-                      <TableColumn  prefWidth="75.0" text="Product Name" >
+                      <TableColumn prefWidth="75.0" text="Product Name">
                       <cellValueFactory>
 							<PropertyValueFactory property="name" />
 							</cellValueFactory>
 							</TableColumn>
-                        <TableColumn prefWidth="75.0" text="Product Description" >
+                        <TableColumn prefWidth="75.0" text="Product Description">
                         <cellValueFactory>
 							<PropertyValueFactory property="description" />
 							</cellValueFactory>
 							</TableColumn>
-                        <TableColumn  prefWidth="75.0" text="Wholesale price" >
+                        <TableColumn prefWidth="75.0" text="Wholesale price">
                         <cellValueFactory>
 							<PropertyValueFactory property="wholesalePrice" />
 							</cellValueFactory>
 							</TableColumn>
-                        <TableColumn  prefWidth="75.0" text="Retail Price" >
+                        <TableColumn prefWidth="75.0" text="Retail Price">
                         <cellValueFactory>
 							<PropertyValueFactory property="retailPrice" />
 							</cellValueFactory>
 							</TableColumn>
-                        <TableColumn  prefWidth="75.0" text="Discount (%)" >
+                        <TableColumn prefWidth="75.0" text="Discount (%)">
                         <cellValueFactory>
 							<PropertyValueFactory property="discount" />
 							</cellValueFactory>
 							</TableColumn>
-                        <TableColumn  prefWidth="75.0" text="Stock" >
+                        <TableColumn prefWidth="75.0" text="Stock">
                         <cellValueFactory>
 							<PropertyValueFactory property="stock" />
 							</cellValueFactory>
 							</TableColumn>
-                        <TableColumn  prefWidth="75.0" text="Action" >
+                        <TableColumn prefWidth="75.0" text="Action">
                         <cellValueFactory>
 							<PropertyValueFactory property="Delete" />
 							</cellValueFactory>
