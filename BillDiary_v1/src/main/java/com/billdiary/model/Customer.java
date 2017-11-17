@@ -7,6 +7,7 @@ import com.billdiary.entities.CustomerEntity;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.control.Hyperlink;
 
 
 public class Customer {
@@ -46,6 +47,19 @@ public class Customer {
 	private SimpleStringProperty mobile_no;
 	private SimpleStringProperty city;
 	private SimpleStringProperty country;
+	private Hyperlink deleteHyperlink;
+
+	public Hyperlink getDeleteHyperlink() {
+		if(deleteHyperlink==null)
+		{
+			deleteHyperlink=new Hyperlink("Delete");
+		}
+		return deleteHyperlink;
+	}
+
+	public void setDeleteHyperlink(Hyperlink deleteHyperlink) {
+		this.deleteHyperlink = deleteHyperlink;
+	}
 
 	public String getAddress() {
 		return address.get();
@@ -105,6 +119,7 @@ public class Customer {
 		this.city=new SimpleStringProperty(customerEnitity.getCity());
 		this.country=new SimpleStringProperty(customerEnitity.getCountry());
 		this.mobile_no=new SimpleStringProperty(customerEnitity.getMobile_no());
+		this.deleteHyperlink=new Hyperlink("Delete");
 	}
 	
 	public Customer(final int customerID,final String customerName)

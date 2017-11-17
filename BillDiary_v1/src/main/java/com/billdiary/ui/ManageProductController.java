@@ -167,9 +167,16 @@ public void deleteButtonClickedThroughHyperlink(int productId)
 	SelectedListItem=ProductTable.getSelectionModel().getSelectedItems();	
 	int id=SelectedListItem.get(0).getProductId();
 	SelectedListItem.forEach(ListItems::remove);
-	productService.deleteProduct(id);
+	boolean productDeleted=false;
+	productDeleted=productService.deleteProduct(id);
 	
-	
+	if(productDeleted)
+	{
+		System.out.println("Product Deleted");
+	}
+	else {
+		System.out.println("Product not Deleted");
+	}
 	
 }
 @Override

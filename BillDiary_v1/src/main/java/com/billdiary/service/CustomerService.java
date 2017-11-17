@@ -34,4 +34,12 @@ public class CustomerService {
 	}
 	
 	
+	public boolean deleteCustomer(long id)
+	{
+		boolean customerDeleted=false;
+		customerDAO.deleteCustomer(id);
+		customerDeleted=true;
+		return customerDeleted;
+	}
+	
 }

@@ -57,9 +57,9 @@
 							</cellValueFactory>
 							</TableColumn>
                         <TableColumn prefWidth="75.0" text="Action">
-                        <cellValueFactory>
-							<PropertyValueFactory property="Delete" />
-							</cellValueFactory>
+                            <cellValueFactory>
+								<PropertyValueFactory property="Delete" />
+								</cellValueFactory>
 							</TableColumn>
                     </columns>
                      <columnResizePolicy>

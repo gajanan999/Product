@@ -1,21 +1,13 @@
 package com.billdiary.model;
 
-import java.io.Serializable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+
+
 
 import org.springframework.stereotype.Component;
-
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.scene.control.Hyperlink;
 
 
@@ -37,6 +29,7 @@ public class ProductDetails {
 	private SimpleDoubleProperty discount;
 	
 	private Hyperlink Delete; 
+	
 	public ProductDetails()
 	{
 	
@@ -103,29 +96,4 @@ public class ProductDetails {
 		Delete = delete;
 	}
 	
-/*	private StringProperty pName = new SimpleStringProperty();
-	private IntegerProperty ID = new SimpleIntegerProperty();
-	public ProductDetails(final int productID,final String productName)
-	{
-		this.productId=new SimpleIntegerProperty(productID);
-		this.name=new SimpleStringProperty(productName);
-	}
-	
-	public IntegerProperty getID() {
-		return ID;
-	}
-	
-	public void setID(final int ID)
-	{
-		this.ID.set(ID);
-	}
-	
-	public void setName(final String pName)
-	{
-		this.name.set(pName);
-	}
-
-	public StringProperty getPName() {
-		return pName;
-	}*/
 }

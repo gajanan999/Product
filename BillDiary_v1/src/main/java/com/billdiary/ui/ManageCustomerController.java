@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.billdiary.model.Customer;
+import com.billdiary.model.ProductDetails;
 import com.billdiary.service.CustomerService;
 
 import javafx.collections.FXCollections;
@@ -72,11 +73,45 @@ public class ManageCustomerController implements Initializable {
 	        for(Customer cust:customers)
 	        {
 	        	data.add(cust);
+	        	int custID=cust.getCustomerID();
+	        	cust.getDeleteHyperlink().setOnAction(e->deleteButtonClickedThroughHyperlink(custID));
 	        }
     	}
 
     }
     
+    public void deleteButtonClickedThroughHyperlink(int customerId)
+    {
+    		System.out.println(customerId);
+    		customerService.deleteCustomer(customerId);
+    		System.out.println(customerId+ "Customer deleted");
+    		customerList.clear();
+    		data.clear();
+    		customerTable.setItems(data);
+    		populate(retrieveData());
+    	
+    }
+    
+    
+    @FXML public void deleteCustomer()
+    {
+    	ObservableList < Customer > ObcustomerList;
+    	
+    	ObcustomerList=customerTable.getSelectionModel().getSelectedItems();
+    	
+    	if(ObcustomerList!=null)
+    	{
+    		System.out.println(ObcustomerList.get(0).getCustomerID());
+    		customerService.deleteCustomer(ObcustomerList.get(0).getCustomerID());
+    		System.out.println(ObcustomerList.get(0).getCustomerID()+ "Customer deleted");
+    		customerList.clear();
+    		data.clear();
+    		customerTable.setItems(data);
+    		populate(retrieveData());
+    		
+    	}
+    	
+    }
 
 
 	@FXML 
