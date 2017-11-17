@@ -55,7 +55,19 @@ public class GeneralUitilies {
 		return pdfTemplate;
 	}
 	
-	
+	public InputStream getFileAsInputStream (String fileURL)
+	{
+		File file=null;
+		InputStream inputStream = null;
+		try {
+			inputStream = getClass().getResourceAsStream(fileURL);
+			
+		}catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
+		return inputStream;
+	}
 	
 	
 	

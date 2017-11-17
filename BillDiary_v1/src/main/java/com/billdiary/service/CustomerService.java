@@ -41,5 +41,13 @@ public class CustomerService {
 		customerDeleted=true;
 		return customerDeleted;
 	}
+	public boolean saveCustomer(long id)
+	{
+		boolean customersaved=false;
+		customerDAO.saveCustomer(id);
+		customersaved=true;
+		return customersaved;
+	}
+	
 	
 }

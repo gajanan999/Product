@@ -31,6 +31,9 @@ public interface URLS {
 	/* template.xsl : file is used for PDF Generation (i.e Invoice Generation) */
 	public static final String PDF_TEMPLATE="C://bill//template.xsl";
 	
+	/*  Image file  : save.jpg  */
+	public static final String SAVE_IMAGE="/images/save.jpg";
+	
 	
 	
 

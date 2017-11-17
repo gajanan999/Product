@@ -2,15 +2,39 @@ package com.billdiary.model;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.billdiary.entities.CustomerEntity;
+import com.billdiary.utility.GeneralUitilies;
+import com.billdiary.utility.URLS;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.image.Image;
 
 
 public class Customer {
+	
+	
+	
+	@Autowired
+	GeneralUitilies generalUtilities;
+	
+	private Image image;
+
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
+	}
+
 
 	/**
 	 * This fields are only for searching purpose
@@ -48,11 +72,43 @@ public class Customer {
 	private SimpleStringProperty city;
 	private SimpleStringProperty country;
 	private Hyperlink deleteHyperlink;
+	private Hyperlink saveHyperlink;
+	private List<Hyperlink> hyperlinks =new ArrayList<>();
+
+	public List<Hyperlink> getHyperlinks() {
+		
+		if(hyperlinks.isEmpty())
+		{
+			
+			hyperlinks.add(getDeleteHyperlink());
+			hyperlinks.add(getSaveHyperlink());
+		}
+		return hyperlinks;
+	}
+
+	public void setHyperlinks(List<Hyperlink> hyperlinks) {
+		this.hyperlinks = hyperlinks;
+	}
+
+	public Hyperlink getSaveHyperlink() {
+		if(saveHyperlink==null)
+		{
+			saveHyperlink=new Hyperlink("Save");
+			this.saveHyperlink.setStyle("-fx-text-fill: #606060;");
+		}
+		return saveHyperlink;
+	}
+
+	public void setSaveHyperlink(Hyperlink saveHyperlink) {
+		this.saveHyperlink = saveHyperlink;
+		
+	}
 
 	public Hyperlink getDeleteHyperlink() {
 		if(deleteHyperlink==null)
 		{
 			deleteHyperlink=new Hyperlink("Delete");
+			this.deleteHyperlink.setStyle("-fx-text-fill: #606060;");
 		}
 		return deleteHyperlink;
 	}
@@ -119,7 +175,16 @@ public class Customer {
 		this.city=new SimpleStringProperty(customerEnitity.getCity());
 		this.country=new SimpleStringProperty(customerEnitity.getCountry());
 		this.mobile_no=new SimpleStringProperty(customerEnitity.getMobile_no());
+		this.image=new Image(generalUtilities.getFileAsInputStream (URLS.SAVE_IMAGE));
 		this.deleteHyperlink=new Hyperlink("Delete");
+		this.deleteHyperlink.setStyle("-fx-text-fill: #606060;");
+		this.saveHyperlink=new Hyperlink("Save");
+		this.saveHyperlink.setStyle("-fx-text-fill: #606060;");
+		this.hyperlinks=new ArrayList<>();
+		this.hyperlinks.add(getDeleteHyperlink());
+		this.hyperlinks.add(getSaveHyperlink());
+		
+		
 	}
 	
 	public Customer(final int customerID,final String customerName)

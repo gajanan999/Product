@@ -112,6 +112,26 @@ public class ManageCustomerController implements Initializable {
     	}
     	
     }
+    
+    @FXML public void saveCustomer()
+    {
+    	ObservableList < Customer > ObcustomerList;
+    	
+    	ObcustomerList=customerTable.getSelectionModel().getSelectedItems();
+    	
+    	if(ObcustomerList!=null)
+    	{
+    		System.out.println(ObcustomerList.get(0).getCustomerID());
+    		customerService.saveCustomer(ObcustomerList.get(0).getCustomerID());
+    		System.out.println(ObcustomerList.get(0).getCustomerID()+ "Customer deleted");
+    		customerList.clear();
+    		data.clear();
+    		customerTable.setItems(data);
+    		populate(retrieveData());
+    		
+    	}
+    	
+    }
 
 
 	@FXML 

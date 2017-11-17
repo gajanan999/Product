@@ -41,4 +41,20 @@ public class CustomerDAO extends AbstractJpaDAO< CustomerEntity >{
 		customerDeleted=true;
 		return customerDeleted;
 	}
+	
+	@Transactional
+	public boolean saveCustomer(long id)
+	{
+
+		boolean customersaved=false;
+		
+		//deleteById(id);
+		int i=(int)id;
+		CustomerEntity c=entityManager.find(CustomerEntity.class, i);
+		
+		entityManager.merge(c);
+		
+		customersaved=true;
+		return customersaved;
+	}
 }
