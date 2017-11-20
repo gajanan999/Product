@@ -1,5 +1,6 @@
 package com.billdiary.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -43,18 +44,19 @@ public class CustomerDAO extends AbstractJpaDAO< CustomerEntity >{
 	}
 	
 	@Transactional
-	public boolean saveCustomer(long id)
+	public List<CustomerEntity> saveCustomer(List<CustomerEntity> customerEntityList)
 	{
 
-		boolean customersaved=false;
+		List<CustomerEntity> updatedCustEntities = new ArrayList<>();
+		for(CustomerEntity custEntity:customerEntityList)
+		{
+			CustomerEntity customerEntity=entityManager.merge(custEntity);
+			updatedCustEntities.add(customerEntity);
+		}
 		
-		//deleteById(id);
-		int i=(int)id;
-		CustomerEntity c=entityManager.find(CustomerEntity.class, i);
 		
-		entityManager.merge(c);
 		
-		customersaved=true;
-		return customersaved;
+		
+		return updatedCustEntities;
 	}
 }

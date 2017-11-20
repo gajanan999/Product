@@ -11,6 +11,9 @@ import com.billdiary.dao.CustomerDAO;
 import com.billdiary.entities.CustomerEntity;
 import com.billdiary.model.Customer;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 @Service
 public class CustomerService {
 
@@ -41,12 +44,17 @@ public class CustomerService {
 		customerDeleted=true;
 		return customerDeleted;
 	}
-	public boolean saveCustomer(long id)
+	public List<Customer> saveCustomer(ObservableList<Customer> obcustomerList)
 	{
-		boolean customersaved=false;
-		customerDAO.saveCustomer(id);
-		customersaved=true;
-		return customersaved;
+		
+		Mapper m=new Mapper();
+		List<CustomerEntity>  customerEntityList = m.getCustEntitiesFromObservableList(obcustomerList);
+		List<CustomerEntity> updatedCustEntities = new ArrayList<>();
+		updatedCustEntities=customerDAO.saveCustomer(customerEntityList);
+		List<Customer> customerList =new ArrayList<>();
+		customerList=m.getCustomerModels(updatedCustEntities);
+		
+		return customerList;
 	}
 	
 	

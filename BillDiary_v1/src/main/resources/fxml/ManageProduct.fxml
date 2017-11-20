@@ -69,6 +69,8 @@
                   <Button layoutX="10.0" layoutY="402.0" mnemonicParsing="false" onAction="#addNewProduct" prefHeight="25.0" prefWidth="116.0" text="Add New Product" />
                   <Button layoutX="129.0" layoutY="402.0" mnemonicParsing="false" onAction="#deleteButtonClicked" prefHeight="25.0" prefWidth="116.0" text="Delete Product" />
                   <Button layoutX="854.0" layoutY="102.0" mnemonicParsing="false" onAction="#searchProduct" prefHeight="25.0" prefWidth="116.0" text="Search" />
+                  <Button layoutX="729.0" layoutY="102.0" mnemonicParsing="false" onAction="#uploadExcelFile" prefHeight="25.0" prefWidth="116.0" text="Upload Template" />
+                  <Button layoutX="598.0" layoutY="102.0" mnemonicParsing="false" onAction="#createExcelFile" prefHeight="25.0" prefWidth="125.0" text="Download Template" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

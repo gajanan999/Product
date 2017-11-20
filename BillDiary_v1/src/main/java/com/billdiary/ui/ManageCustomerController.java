@@ -10,14 +10,20 @@ import java.util.ResourceBundle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import com.billdiary.entities.CustomerEntity;
 import com.billdiary.model.Customer;
 import com.billdiary.model.ProductDetails;
 import com.billdiary.service.CustomerService;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
@@ -32,7 +38,7 @@ public class ManageCustomerController implements Initializable {
 	
 	@FXML
 	TextField customerName;
-	
+	String address;
 	@FXML
 	private TableView < Customer > customerTable;
 	
@@ -118,11 +124,12 @@ public class ManageCustomerController implements Initializable {
     	ObservableList < Customer > ObcustomerList;
     	
     	ObcustomerList=customerTable.getSelectionModel().getSelectedItems();
-    	
+    	System.out.println(ObcustomerList.get(0).getAddress());
     	if(ObcustomerList!=null)
     	{
+    			customerService.saveCustomer(ObcustomerList);
     		System.out.println(ObcustomerList.get(0).getCustomerID());
-    		customerService.saveCustomer(ObcustomerList.get(0).getCustomerID());
+    		List<Customer> custList = customerService.saveCustomer(ObcustomerList);
     		System.out.println(ObcustomerList.get(0).getCustomerID()+ "Customer deleted");
     		customerList.clear();
     		data.clear();
@@ -133,6 +140,21 @@ public class ManageCustomerController implements Initializable {
     	
     }
 
+    
+    @FXML private <T>void setEditedValue(CellEditEvent<Customer,T> event)
+    {
+    	ObservableList < Customer > ObcustomerList;
+    	
+    	ObcustomerList=customerTable.getSelectionModel().getSelectedItems();
+    	System.out.println(event.getNewValue()+"kjjaf");
+    	 address = (String) event.getNewValue();
+    	 int row=event.getTablePosition().getRow();
+    	 System.out.println(row+"*****");
+    	 System.out.println(event.getTableColumn().getText());
+    	System.out.println(data.get(2).getAddress());
+    	data.get(2).setAddress(new SimpleStringProperty((String) event.getNewValue()));
+    	System.out.println(data.get(2).getAddress());
+    }
 
 	@FXML 
 	public void searchCustomer()

@@ -230,5 +230,12 @@ private void populate(final List < ProductDetails > products)
 	}
 
 }
-
+ @FXML private void createExcelFile()
+ {
+	 
+ }
+ @FXML private void uploadExcelFile()
+ {
+	 
+ }
 }

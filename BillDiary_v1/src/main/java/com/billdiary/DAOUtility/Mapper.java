@@ -13,6 +13,8 @@ import com.billdiary.model.User1;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Hyperlink;
 
 public class Mapper {
@@ -72,4 +74,23 @@ public class Mapper {
 		
 		return productList;
 	}
+
+	public List<CustomerEntity> getCustEntitiesFromObservableList(ObservableList<Customer> obcustomerList) {
+		// TODO Auto-generated method stub
+		
+		List<CustomerEntity> customerEntityList = new ArrayList<>();
+		for(Customer cust:obcustomerList)
+		{
+			CustomerEntity customerEntity =new CustomerEntity();
+			customerEntity.setCustomerID(cust.getCustomerID());
+			customerEntity.setCustomerName(cust.getCustomerName());
+			customerEntity.setMobile_no(cust.getMobile_no());
+			customerEntity.setAddress(cust.getAddress());
+			customerEntity.setCity(cust.getCity());
+			customerEntity.setCountry(cust.getCountry());
+			customerEntityList.add(customerEntity);
+		}
+		return customerEntityList;
+	}
+
 }
