@@ -143,17 +143,33 @@ public class ManageCustomerController implements Initializable {
     
     @FXML private <T>void setEditedValue(CellEditEvent<Customer,T> event)
     {
-    	ObservableList < Customer > ObcustomerList;
+    	if("customerName".equals(event.getTableColumn().getId())) {
+    		String customerName=event.getNewValue().toString();
+    		event.getTableView().getItems().get(event.getTablePosition().getRow()).setCustomerName(new SimpleStringProperty(customerName));
+    	}
+    	if("address".equals(event.getTableColumn().getId())) {
+    		String address=event.getNewValue().toString();
+    		event.getTableView().getItems().get(event.getTablePosition().getRow()).setAddress(new SimpleStringProperty(address));
+    	}
+    	if("mobileNO".equals(event.getTableColumn().getId())) {
+    		String mobileNO=event.getNewValue().toString();
+    		event.getTableView().getItems().get(event.getTablePosition().getRow()).setMobile_no(new SimpleStringProperty(mobileNO));
+    	}
+    	if("city".equals(event.getTableColumn().getId())) {
+    		String city=event.getNewValue().toString();
+    		event.getTableView().getItems().get(event.getTablePosition().getRow()).setCity(new SimpleStringProperty(city));
+    	}
+    	if("country".equals(event.getTableColumn().getId())) {
+    		String country=event.getNewValue().toString();
+    		event.getTableView().getItems().get(event.getTablePosition().getRow()).setCountry(new SimpleStringProperty(country));
+    	}
+    	/*
+    	if("joiningDate".equals(event.getTableColumn().getId())) {
+    		String joiningDate=event.getNewValue().toString();
+    		event.getTableView().getItems().get(event.getTablePosition().getRow()).setJoiningDate(new SimpleStringProperty(joiningDate));
+    	}
+    	*/
     	
-    	ObcustomerList=customerTable.getSelectionModel().getSelectedItems();
-    	System.out.println(event.getNewValue()+"kjjaf");
-    	 address = (String) event.getNewValue();
-    	 int row=event.getTablePosition().getRow();
-    	 System.out.println(row+"*****");
-    	 System.out.println(event.getTableColumn().getText());
-    	System.out.println(data.get(2).getAddress());
-    	data.get(2).setAddress(new SimpleStringProperty((String) event.getNewValue()));
-    	System.out.println(data.get(2).getAddress());
     }
 
 	@FXML 

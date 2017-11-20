@@ -22,12 +22,12 @@
                   <Separator layoutX="8.0" layoutY="133.0" prefHeight="3.0" prefWidth="964.0" />
                   <TableView fx:id="customerTable" editable="true" layoutX="10.0" layoutY="146.0" prefHeight="245.0" prefWidth="960.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="Customer ID">
+                      <TableColumn id="customerID" editable="false" prefWidth="75.0" text="Customer ID">
                             <cellValueFactory>
 							<PropertyValueFactory property="customerID" />
 							</cellValueFactory>
 					  </TableColumn>
-                      <TableColumn onEditCommit="#setEditedValue" prefWidth="75.0" text="Customer Name">
+                      <TableColumn id="customerName" onEditCommit="#setEditedValue" prefWidth="75.0" text="Customer Name">
                       		<cellValueFactory>
 							<PropertyValueFactory property="customerName" />
 							</cellValueFactory>
@@ -35,7 +35,7 @@
 							<TextFieldTableCell fx:factory="forTableColumn" />
 							</cellFactory>	
 					  </TableColumn>
-                        <TableColumn onEditCommit="#setEditedValue" prefWidth="75.0" text="Address">
+                        <TableColumn id="address" onEditCommit="#setEditedValue" prefWidth="75.0" text="Address">
                             <cellValueFactory>
 							<PropertyValueFactory property="address" />
 							</cellValueFactory>
@@ -43,7 +43,7 @@
 							<TextFieldTableCell fx:factory="forTableColumn" />
 							</cellFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="75.0" text="Mobile No">
+                        <TableColumn id="mobileNO" onEditCommit="#setEditedValue" prefWidth="75.0" text="Mobile No">
                         	<cellValueFactory>
 							<PropertyValueFactory property="mobile_no" />
 							</cellValueFactory>
@@ -51,7 +51,7 @@
 							<TextFieldTableCell fx:factory="forTableColumn" />
 							</cellFactory>
 						</TableColumn>
-                        <TableColumn prefWidth="75.0" text="City">
+                        <TableColumn id="city" onEditCommit="#setEditedValue" prefWidth="75.0" text="City">
                         	<cellValueFactory>
 							<PropertyValueFactory property="city" />
 							</cellValueFactory>
@@ -59,7 +59,7 @@
 							<TextFieldTableCell fx:factory="forTableColumn" />
 							</cellFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="75.0" text="Country">
+                        <TableColumn id="country" onEditCommit="#setEditedValue" prefWidth="75.0" text="Country">
                         	<cellValueFactory>
 							<PropertyValueFactory property="country" />
 							</cellValueFactory>
@@ -67,7 +67,7 @@
 							<TextFieldTableCell fx:factory="forTableColumn" />
 							</cellFactory>
                         </TableColumn>
-                        <TableColumn prefWidth="75.0" text="Joining Date" />
+                        <TableColumn id="joiningDate" onEditCommit="#setEditedValue" prefWidth="75.0" text="Joining Date" />
                         <TableColumn prefWidth="75.0" text="Action">
                        		<cellValueFactory>
 								<PropertyValueFactory property="deleteHyperlink" />
