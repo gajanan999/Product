@@ -25,6 +25,8 @@ public interface URLS {
 	public static final String MENUBAR_PAGE="/fxml/MenuBar.fxml";
 	/* QuickPay page  */
 	public static final String QUICK_PAY_PAGE="/fxml/QuickPay.fxml";
+	/* AddCustomer page  */
+	public static final String ADD_CUSTOMER="/fxml/AddCustomer.fxml";
 	
 	
 	

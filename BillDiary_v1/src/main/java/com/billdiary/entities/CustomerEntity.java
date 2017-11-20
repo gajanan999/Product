@@ -29,6 +29,9 @@ public class CustomerEntity implements Serializable {
 	@Column(name = "address")
 	private String address;
 	
+	@Column(name="email_id")
+	private String emailID;
+
 	@Column(name = "mobile_no")
 	private String mobile_no;
 	
@@ -74,6 +77,12 @@ public class CustomerEntity implements Serializable {
 	}
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
+	}
+	public String getEmailID() {
+		return emailID;
+	}
+	public void setEmailID(String emailID) {
+		this.emailID = emailID;
 	}
 	
 

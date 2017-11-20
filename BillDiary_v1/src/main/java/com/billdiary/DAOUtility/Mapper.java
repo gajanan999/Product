@@ -35,24 +35,7 @@ public class Mapper {
 		return userEntity;
 	}
 
-	public List<Customer> getCustomerModels(List<CustomerEntity> customerEntityList) {
-		List<Customer> customerList=new ArrayList<>();
-		
-		for(CustomerEntity customerEntity:customerEntityList)
-		{
-			Customer cust=new Customer();
-			cust.setCustomerID(new SimpleIntegerProperty(customerEntity.getCustomerID()));
-			//cust.setCustomerID(new SimpleIntegerProperty(customerEntity.getCustomerID()));
-			cust.setCustomerName(new SimpleStringProperty(customerEntity.getCustomerName()));
-			cust.setAddress(new SimpleStringProperty(customerEntity.getAddress()));
-			cust.setCity(new SimpleStringProperty(customerEntity.getCity()));
-			cust.setCountry(new SimpleStringProperty(customerEntity.getCountry()));
-			cust.setMobile_no(new SimpleStringProperty(customerEntity.getMobile_no()));
-			customerList.add(cust);
-		}
-		
-		return customerList;
-	}
+	
 	public List<ProductDetails> getProductModels(List<ProductEntity> productEntityList) {
 		List<ProductDetails> productList=new ArrayList<>();
 		
@@ -74,6 +57,13 @@ public class Mapper {
 		
 		return productList;
 	}
+	
+	
+	/**
+	 * Get CustomerEntity List From ObservableCustomerList 
+	 * @param obcustomerList
+	 * @return List<CustomerEntity>
+	 */
 
 	public List<CustomerEntity> getCustEntitiesFromObservableList(ObservableList<Customer> obcustomerList) {
 		// TODO Auto-generated method stub
@@ -88,9 +78,35 @@ public class Mapper {
 			customerEntity.setAddress(cust.getAddress());
 			customerEntity.setCity(cust.getCity());
 			customerEntity.setCountry(cust.getCountry());
+			customerEntity.setEmailID(cust.getEmailID());
 			customerEntityList.add(customerEntity);
 		}
 		return customerEntityList;
+	}
+	
+	/**
+	 * Get Customer List From List of CustomerEntityList
+	 * @param customerEntityList
+	 * @return List<Customer>
+	 */
+	public List<Customer> getCustomerModels(List<CustomerEntity> customerEntityList) {
+		List<Customer> customerList=new ArrayList<>();
+		
+		for(CustomerEntity customerEntity:customerEntityList)
+		{
+			Customer cust=new Customer();
+			cust.setCustomerID(new SimpleIntegerProperty(customerEntity.getCustomerID()));
+			//cust.setCustomerID(new SimpleIntegerProperty(customerEntity.getCustomerID()));
+			cust.setCustomerName(new SimpleStringProperty(customerEntity.getCustomerName()));
+			cust.setAddress(new SimpleStringProperty(customerEntity.getAddress()));
+			cust.setCity(new SimpleStringProperty(customerEntity.getCity()));
+			cust.setCountry(new SimpleStringProperty(customerEntity.getCountry()));
+			cust.setMobile_no(new SimpleStringProperty(customerEntity.getMobile_no()));
+			cust.setEmailID(new SimpleStringProperty(customerEntity.getEmailID()));
+			customerList.add(cust);
+		}
+		
+		return customerList;
 	}
 
 }

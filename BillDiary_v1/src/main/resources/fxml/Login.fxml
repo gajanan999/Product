@@ -34,9 +34,7 @@
 
 	<Text fx:id="actiontarget"
        GridPane.columnIndex="1" GridPane.rowIndex="6"/>
-       <Label text="%Username"
-        GridPane.columnIndex="3" GridPane.rowIndex="2"/>
-        
+       
 	<padding>
 		<Insets top="25" right="25" bottom="10" left="25"/>
 	</padding>

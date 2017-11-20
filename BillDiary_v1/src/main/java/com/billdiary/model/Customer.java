@@ -68,6 +68,7 @@ public class Customer {
 	private SimpleStringProperty customerName;
 	private SimpleIntegerProperty customerID;
 	private SimpleStringProperty address;
+	private SimpleStringProperty emailID;
 	private SimpleStringProperty mobile_no;
 	private SimpleStringProperty city;
 	private SimpleStringProperty country;
@@ -141,6 +142,13 @@ public class Customer {
 		return customerID.get();
 	}
 
+	public String getEmailID() {
+		return emailID.get();
+	}
+
+	public void setEmailID(SimpleStringProperty emailID) {
+		this.emailID = emailID;
+	}
 
 	
 	public void setCustomerName(SimpleStringProperty customerName) {
@@ -172,6 +180,7 @@ public class Customer {
 		this.customerID=new SimpleIntegerProperty(customerEnitity.getCustomerID());
 		this.customerName=new SimpleStringProperty(customerEnitity.getCustomerName());
 		this.address=new SimpleStringProperty(customerEnitity.getAddress());
+		this.emailID=new SimpleStringProperty(customerEnitity.getEmailID());
 		this.city=new SimpleStringProperty(customerEnitity.getCity());
 		this.country=new SimpleStringProperty(customerEnitity.getCountry());
 		this.mobile_no=new SimpleStringProperty(customerEnitity.getMobile_no());

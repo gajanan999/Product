@@ -43,6 +43,14 @@
 							<TextFieldTableCell fx:factory="forTableColumn" />
 							</cellFactory>
                         </TableColumn>
+                        <TableColumn id="emailID" onEditCommit="#setEditedValue" prefWidth="75.0" text="Email ID">
+                           <cellFactory>
+                              <TextFieldTableCell fx:factory="forTableColumn" />
+                           </cellFactory>
+                           <cellValueFactory>
+                              <PropertyValueFactory property="emailID" />
+                           </cellValueFactory>
+                        </TableColumn>
                         <TableColumn id="mobileNO" onEditCommit="#setEditedValue" prefWidth="75.0" text="Mobile No">
                         	<cellValueFactory>
 							<PropertyValueFactory property="mobile_no" />
@@ -79,7 +87,7 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
-                  <Button layoutX="10.0" layoutY="402.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="126.0" text="New Customer" />
+                  <Button layoutX="10.0" layoutY="402.0" mnemonicParsing="false" onAction="#showAddCustomer" prefHeight="25.0" prefWidth="126.0" text="New Customer" />
                   <Button layoutX="140.0" layoutY="402.0" mnemonicParsing="false" onAction="#deleteCustomer" prefHeight="25.0" prefWidth="116.0" text="Delete " />
                   <Button layoutX="854.0" layoutY="102.0" mnemonicParsing="false" onAction="#searchCustomer" prefHeight="25.0" prefWidth="116.0" text="Search" />
                   <Button layoutX="260.0" layoutY="402.0" mnemonicParsing="false" onAction="#saveCustomer" prefHeight="25.0" prefWidth="116.0" text="Save " />

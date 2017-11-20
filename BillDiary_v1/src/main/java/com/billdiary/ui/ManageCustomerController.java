@@ -10,21 +10,26 @@ import java.util.ResourceBundle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import com.billdiary.entities.CustomerEntity;
+import com.billdiary.config.SpringFxmlLoader;
 import com.billdiary.model.Customer;
-import com.billdiary.model.ProductDetails;
+
 import com.billdiary.service.CustomerService;
+import com.billdiary.utility.Constants;
+import com.billdiary.utility.URLS;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 
@@ -33,6 +38,8 @@ public class ManageCustomerController implements Initializable {
 	
 	@Autowired
 	private CustomerService customerService;
+	@Autowired
+	public LayoutController layoutController;
 	
 	List<Customer> customerList=new ArrayList<>();
 	
@@ -127,10 +134,7 @@ public class ManageCustomerController implements Initializable {
     	System.out.println(ObcustomerList.get(0).getAddress());
     	if(ObcustomerList!=null)
     	{
-    			customerService.saveCustomer(ObcustomerList);
-    		System.out.println(ObcustomerList.get(0).getCustomerID());
-    		List<Customer> custList = customerService.saveCustomer(ObcustomerList);
-    		System.out.println(ObcustomerList.get(0).getCustomerID()+ "Customer deleted");
+    		customerService.saveCustomer(ObcustomerList);
     		customerList.clear();
     		data.clear();
     		customerTable.setItems(data);
@@ -163,6 +167,10 @@ public class ManageCustomerController implements Initializable {
     		String country=event.getNewValue().toString();
     		event.getTableView().getItems().get(event.getTablePosition().getRow()).setCountry(new SimpleStringProperty(country));
     	}
+    	if("emailID".equals(event.getTableColumn().getId())) {
+    		String emailID=event.getNewValue().toString();
+    		event.getTableView().getItems().get(event.getTablePosition().getRow()).setEmailID(new SimpleStringProperty(emailID));
+    	}
     	/*
     	if("joiningDate".equals(event.getTableColumn().getId())) {
     		String joiningDate=event.getNewValue().toString();
@@ -177,5 +185,48 @@ public class ManageCustomerController implements Initializable {
 	{
 		
 	}
+	
+	@FXML
+	public void showAddCustomer()
+	{
+		SpringFxmlLoader loader=SpringFxmlLoader.getInstance();
+		//ResourceBundle bundle = ResourceBundle.getBundle("resources.UIResources");
+		StackPane addShop=(StackPane) loader.load(URLS.ADD_CUSTOMER);
+		BorderPane root = new BorderPane();
+		root.setCenter(addShop);
+		layoutController.loadWindow(root,"Add Customer Details",Constants.POPUP_WINDOW_WIDTH,Constants.POPUP_WINDOW_HEIGHT);
+		
+	}
 
+	
+	
+	
+	/**
+	 * AddCustomer Page Code
+	 */
+	@FXML
+	TextField add_firstName;
+	@FXML
+	TextField add_lastName;
+	@FXML
+	TextArea add_address;
+	@FXML
+	TextField add_mobileNo;
+	@FXML
+	ChoiceBox<?> add_city;
+	@FXML
+	TextField add_emailID;
+	@FXML
+	ChoiceBox<?> add_country;
+	
+	@FXML
+	public void addCustomer(){
+		
+		
+		
+	}
+	
+	
+	
+	
 }
