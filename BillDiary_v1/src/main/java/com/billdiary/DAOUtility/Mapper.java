@@ -109,4 +109,19 @@ public class Mapper {
 		return customerList;
 	}
 
+
+	public CustomerEntity getCustomerEntity(Customer cust) {
+		// TODO Auto-generated method stub
+		CustomerEntity customerEntity =new CustomerEntity();
+		customerEntity.setCustomerID(0);
+		customerEntity.setCustomerName(cust.getCustomerName());
+		customerEntity.setMobile_no(cust.getMobile_no());
+		customerEntity.setAddress(cust.getAddress());
+		customerEntity.setCity(cust.getCity());
+		customerEntity.setCountry(cust.getCountry());
+		customerEntity.setEmailID(cust.getEmailID());
+		
+		return customerEntity;
+	}
+
 }

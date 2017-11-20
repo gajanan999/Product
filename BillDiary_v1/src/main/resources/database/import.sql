@@ -76,7 +76,7 @@ create table if not exists customer
 --insert into customer(customer_id,customer_name) values(IDENTITY()+1,'Gajanan');
 --insert into customer(customer_id,customer_name) values(IDENTITY()+1,'Gajanan');
 
-insert into customer values(null,'kfc baner','pune','India','Vidya','gajanangai','7709656986');
-insert into customer values(null,'kfc baner','Baramati','India','Gajanan','gajanangaikwad999@gmail.com','7709635664');
+--insert into customer values(null,'kfc baner','pune','India','Vidya','gajanangai','7709656986');
+--insert into customer values(null,'kfc baner','Baramati','India','Gajanan','gajanangaikwad999@gmail.com','7709635664');
 
 

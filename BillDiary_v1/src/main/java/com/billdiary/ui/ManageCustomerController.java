@@ -98,10 +98,7 @@ public class ManageCustomerController implements Initializable {
     		System.out.println(customerId);
     		customerService.deleteCustomer(customerId);
     		System.out.println(customerId+ "Customer deleted");
-    		customerList.clear();
-    		data.clear();
-    		customerTable.setItems(data);
-    		populate(retrieveData());
+    		getRefreshedTable();
     	
     }
     
@@ -205,9 +202,7 @@ public class ManageCustomerController implements Initializable {
 	 * AddCustomer Page Code
 	 */
 	@FXML
-	TextField add_firstName;
-	@FXML
-	TextField add_lastName;
+	TextField add_customerName;
 	@FXML
 	TextArea add_address;
 	@FXML
@@ -221,12 +216,40 @@ public class ManageCustomerController implements Initializable {
 	
 	@FXML
 	public void addCustomer(){
+		String customerName=add_customerName.getText();
+		String address=add_address.getText();
+		String mobileNO=add_mobileNo.getText();
+		String city=(String)add_city.getValue();
+		String emailID=add_emailID.getText();
+		String country=(String)add_country.getValue();
+		if(customerName!=null && address!=null && mobileNO!=null && city!=null && emailID!=null && country!=null)
+		{
+			System.out.println(customerName+" "+address+" "+mobileNO+" "+city+" "+emailID+" "+country);
+			Customer cust=new Customer();
+			cust.setCustomerName(new SimpleStringProperty(customerName));
+			cust.setAddress(new SimpleStringProperty(address));
+			cust.setMobile_no(new SimpleStringProperty(mobileNO));
+		    cust.setCity(new SimpleStringProperty(city));
+		    cust.setEmailID(new SimpleStringProperty(emailID));
+		    cust.setCountry(new SimpleStringProperty(country));
+		    
+			customerService.addCustomer(cust);
+			
+			getRefreshedTable();
+		}
+		
 		
 		
 		
 	}
 	
-	
+	public void getRefreshedTable()
+	{
+		customerList.clear();
+		data.clear();
+		customerTable.setItems(data);
+		populate(retrieveData());
+	}
 	
 	
 }

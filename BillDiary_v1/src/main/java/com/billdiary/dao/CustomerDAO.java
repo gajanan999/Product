@@ -59,4 +59,13 @@ public class CustomerDAO extends AbstractJpaDAO< CustomerEntity >{
 		
 		return updatedCustEntities;
 	}
+	
+	@Transactional
+	public boolean addCustomer(CustomerEntity cust)
+	{
+		boolean customerAdded=false;
+		create(cust);
+		customerAdded=true;
+		return customerAdded;
+	}
 }

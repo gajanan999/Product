@@ -57,5 +57,14 @@ public class CustomerService {
 		return customerList;
 	}
 	
+	public boolean addCustomer(Customer cust)
+	{
+		Mapper m=new Mapper();
+		boolean customerAdded=false;
+		CustomerEntity custEntity=m.getCustomerEntity(cust);
+		customerAdded=customerDAO.addCustomer(custEntity);
+		return customerAdded;
+	}
+	
 	
 }

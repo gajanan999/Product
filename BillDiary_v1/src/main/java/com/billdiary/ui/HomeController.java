@@ -1,5 +1,8 @@
 package com.billdiary.ui;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -83,9 +86,9 @@ public class HomeController {
 	}
 	
 	
+	@FXML Text trylanguage;
 	
-	
-	@FXML public void initialize(){
+	public void initialize(URL arg0, ResourceBundle arg1){
 		
 		
 		
