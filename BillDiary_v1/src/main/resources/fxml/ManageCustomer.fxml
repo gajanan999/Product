@@ -78,7 +78,7 @@
                         <TableColumn id="joiningDate" onEditCommit="#setEditedValue" prefWidth="75.0" text="Joining Date" />
                         <TableColumn prefWidth="75.0" text="Action">
                        		<cellValueFactory>
-								<PropertyValueFactory property="deleteHyperlink" />
+								<PropertyValueFactory property="actionbox" />
 							</cellValueFactory>
 							
 						</TableColumn>

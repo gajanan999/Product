@@ -16,6 +16,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.image.Image;
+import javafx.scene.layout.HBox;
 
 
 public class Customer {
@@ -72,6 +73,24 @@ public class Customer {
 	private SimpleStringProperty mobile_no;
 	private SimpleStringProperty city;
 	private SimpleStringProperty country;
+	private HBox actionbox;
+	
+	
+	public HBox getActionbox() {
+		if(actionbox==null) {
+			deleteHyperlink=getDeleteHyperlink();
+			saveHyperlink=getSaveHyperlink();
+			actionbox=new HBox(deleteHyperlink,saveHyperlink);
+		}
+		
+		return actionbox;
+	}
+
+	public void setActionbox(HBox actionbox) {
+		this.actionbox = actionbox;
+	}
+
+
 	private Hyperlink deleteHyperlink;
 	private Hyperlink saveHyperlink;
 	private List<Hyperlink> hyperlinks =new ArrayList<>();
@@ -96,6 +115,7 @@ public class Customer {
 		{
 			saveHyperlink=new Hyperlink("Save");
 			this.saveHyperlink.setStyle("-fx-text-fill: #606060;");
+			
 		}
 		return saveHyperlink;
 	}
@@ -192,6 +212,8 @@ public class Customer {
 		this.hyperlinks=new ArrayList<>();
 		this.hyperlinks.add(getDeleteHyperlink());
 		this.hyperlinks.add(getSaveHyperlink());
+		
+		this.actionbox=getActionbox();
 		
 		
 	}

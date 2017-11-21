@@ -20,7 +20,7 @@ import com.billdiary.utility.URLS;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
@@ -29,6 +29,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -88,8 +89,10 @@ public class ManageCustomerController implements Initializable {
 	        	data.add(cust);
 	        	int custID=cust.getCustomerID();
 	        	cust.getDeleteHyperlink().setOnAction(e->deleteButtonClickedThroughHyperlink(custID));
+	        	cust.getSaveHyperlink().setOnAction(e->saveButtonClickedThroughHyperlink(custID,e));
 	        }
     	}
+    	
 
     }
     
@@ -102,6 +105,20 @@ public class ManageCustomerController implements Initializable {
     	
     }
     
+    
+    public <T> void saveButtonClickedThroughHyperlink(int customerId,ActionEvent event)
+    {
+    		System.out.println(customerId);
+    		
+    		System.out.println(event.getSource());
+    		
+    		System.out.println(event.getClass());
+    		
+    		System.out.println(event.getEventType());
+    		System.out.println(customerTable.getSelectionModel().getFocusedIndex());
+    		
+    	
+    }
     
     @FXML public void deleteCustomer()
     {
