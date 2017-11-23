@@ -9,6 +9,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.layout.HBox;
 
 
 @Component
@@ -28,7 +29,12 @@ public class ProductDetails {
 	
 	private SimpleDoubleProperty discount;
 	
-	private Hyperlink Delete; 
+	private HBox action;
+	
+	
+	private Hyperlink delete;
+	
+	private Hyperlink save;
 	
 	public ProductDetails()
 	{
@@ -45,7 +51,11 @@ public class ProductDetails {
 		this.description = new SimpleStringProperty(descriptionOfProduct);
 		this.stock = new SimpleIntegerProperty(stockOfProduct);
 		this.discount =new SimpleDoubleProperty (Discount);
-		this.Delete = new Hyperlink("Delete");
+		this.delete = new Hyperlink("Delete");
+		this.delete.setStyle("-fx-text-fill: #606060;");
+		this.save=new Hyperlink("save");
+		this.save.setStyle("-fx-text-fill: #606060;");
+		this.action=new HBox(delete,save);
 	}
 	public int getProductId() {
 		return productId.get();
@@ -89,11 +99,43 @@ public class ProductDetails {
 	public void setDiscount(SimpleDoubleProperty Discount) {
 		this.discount=Discount;
 	}
+	
 	public Hyperlink getDelete() {
-		return Delete;
+		if(delete==null)
+		{
+		 delete=new Hyperlink("delete");
+		 this.delete.setStyle("-fx-text-fill: #606060;");
+		}
+		return delete;
 	}
 	public void setDelete(Hyperlink delete) {
-		Delete = delete;
+		this.delete = delete;
+	}
+	public Hyperlink getSave() {
+		if(save==null)
+		{
+			save=new Hyperlink("save");
+			this.save.setStyle("-fx-text-fill: #606060;");
+		}
+		
+		return save;
+	}
+	public void setSave(Hyperlink save) {
+		this.save = save;
+	}
+	
+	public HBox getAction() {
+		if(action==null)
+		{
+			delete=getDelete();
+			save=getSave();
+			action=new HBox(delete,save);
+			
+		}
+		return action;
+	}
+	public void setAction(HBox action) {
+		this.action = action;
 	}
 	
 }

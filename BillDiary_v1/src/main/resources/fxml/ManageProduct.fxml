@@ -19,46 +19,56 @@
                   <Text layoutX="43.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product Code" />
                   <TextField id="productId" fx:id="productId" layoutX="129.0" layoutY="81.0" />
                   <Separator layoutX="8.0" layoutY="133.0" prefHeight="3.0" prefWidth="964.0" />
-                  <TableView fx:id="ProductTable" layoutX="10.0" layoutY="146.0" prefHeight="245.0" prefWidth="960.0">
+                  <TableView id="ProductTable" fx:id="ProductTable" editable="true" layoutX="10.0" layoutY="146.0" prefHeight="245.0" prefWidth="960.0">
                     <columns>
                       <TableColumn prefWidth="75.0" text="ID (Code)">
                       <cellValueFactory>
 							<PropertyValueFactory property="productId" />
 							</cellValueFactory>
 							</TableColumn>
-                      <TableColumn prefWidth="75.0" text="Product Name">
+                      <TableColumn id="ProductName" onEditCommit="#setEditedValue" prefWidth="75.0" text="Product Name">
                       <cellValueFactory>
 							<PropertyValueFactory property="name" />
 							</cellValueFactory>
+							<cellFactory>
+							<TextFieldTableCell fx:factory="forTableColumn" />
+							</cellFactory>
 							</TableColumn>
-                        <TableColumn prefWidth="75.0" text="Product Description">
+                        <TableColumn id="ProductDesc" onEditCommit="#setEditedValue" prefWidth="75.0" text="Product Description">
                         <cellValueFactory>
 							<PropertyValueFactory property="description" />
 							</cellValueFactory>
+							<cellFactory>
+							<TextFieldTableCell fx:factory="forTableColumn" />
+							</cellFactory>
 							</TableColumn>
-                        <TableColumn prefWidth="75.0" text="Wholesale price">
+                        <TableColumn id="WholesalePrice" fx:id="WholesalePrice" onEditCommit="#setEditedValue" prefWidth="75.0" text="Wholesale price">
                         <cellValueFactory>
 							<PropertyValueFactory property="wholesalePrice" />
 							</cellValueFactory>
+							
 							</TableColumn>
-                        <TableColumn prefWidth="75.0" text="Retail Price">
+                        <TableColumn id="RetailPrice" fx:id="RetailPrice" onEditCommit="#setEditedValue" prefWidth="75.0" text="Retail Price">
                         <cellValueFactory>
 							<PropertyValueFactory property="retailPrice" />
 							</cellValueFactory>
+							
 							</TableColumn>
-                        <TableColumn prefWidth="75.0" text="Discount (%)">
+                        <TableColumn id="Discount" fx:id="Discount" onEditCommit="#setEditedValue" prefWidth="75.0" text="Discount (%)">
                         <cellValueFactory>
 							<PropertyValueFactory property="discount" />
 							</cellValueFactory>
+							
 							</TableColumn>
-                        <TableColumn prefWidth="75.0" text="Stock">
+                        <TableColumn id="Stock" fx:id="Stock" onEditCommit="#setEditedValue" prefWidth="75.0" text="Stock">
                         <cellValueFactory>
 							<PropertyValueFactory property="stock" />
 							</cellValueFactory>
+							
 							</TableColumn>
                         <TableColumn prefWidth="75.0" text="Action">
                             <cellValueFactory>
-								<PropertyValueFactory property="Delete" />
+								<PropertyValueFactory property="action" />
 								</cellValueFactory>
 							</TableColumn>
                     </columns>
@@ -71,6 +81,7 @@
                   <Button layoutX="854.0" layoutY="102.0" mnemonicParsing="false" onAction="#searchProduct" prefHeight="25.0" prefWidth="116.0" text="Search" />
                   <Button layoutX="729.0" layoutY="102.0" mnemonicParsing="false" onAction="#uploadExcelFile" prefHeight="25.0" prefWidth="116.0" text="Upload Template" />
                   <Button layoutX="598.0" layoutY="102.0" mnemonicParsing="false" onAction="#createExcelFile" prefHeight="25.0" prefWidth="125.0" text="Download Template" />
+                  <Button layoutX="251.0" layoutY="402.0" mnemonicParsing="false" onAction="#saveProduct" prefHeight="25.0" prefWidth="116.0" text="Save" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

@@ -124,4 +124,36 @@ public class Mapper {
 		return customerEntity;
 	}
 
+
+	public List<ProductEntity> getProdEntitiesFromObservableList(ObservableList<ProductDetails> obproductList) {
+		List<ProductEntity> productEntityList = new ArrayList<>();
+		for(ProductDetails prod:obproductList)
+		{
+			ProductEntity productEntity =new ProductEntity();
+			productEntity.setDescription(prod.getDescription());;
+			productEntity.setDiscount(prod.getDiscount());;
+			productEntity.setId(prod.getProductId());;
+			productEntity.setName(prod.getName());;
+			productEntity.setRetail_price(prod.getRetailPrice());;
+			productEntity.setWholesale_price(prod.getWholesalePrice());;
+			productEntity.setStock(prod.getStock());;
+			productEntityList.add(productEntity);
+		}
+		return productEntityList;
+	}
+
+
+	public ProductEntity getProductEntity(ProductDetails prod) {
+		ProductEntity productEntity =new ProductEntity();
+		productEntity.setId(0);
+		productEntity.setDescription(prod.getDescription());
+		productEntity.setName(prod.getName());;
+		productEntity.setRetail_price(prod.getRetailPrice());;
+		productEntity.setWholesale_price(prod.getWholesalePrice());;
+		productEntity.setDiscount(prod.getDiscount());;
+		productEntity.setStock(prod.getStock());;
+		
+		return productEntity;
+	}
+
 }

@@ -10,23 +10,34 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 
 import com.billdiary.config.SpringFxmlLoader;
-
+import com.billdiary.model.Customer;
 import com.billdiary.model.ProductDetails;
 import com.billdiary.service.ProductService;
 //import com.billdiary.service.ProductService;
 import com.billdiary.utility.Constants;
 import com.billdiary.utility.URLS;
 
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleLongProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-
+import javafx.scene.Node;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.util.converter.DoubleStringConverter;
+import javafx.util.converter.IntegerStringConverter;
 
 @Controller("ManageProductController")
 @Service
@@ -146,16 +157,8 @@ public class ManageProductController implements Initializable{
 public void deleteButtonClickedThroughHyperlink(int productId)
 {
 	System.out.println("Inside DeleteButtonClicked");
-	ObservableList< ProductDetails> ListItems;
-	ListItems=ProductTable.getItems();
-	for(int j = 0;j<ListItems.size();j++)
-	{
-		if(productId==ListItems.get(j).getProductId())
-		{
-			ListItems.remove(j);
-		}
-	}
 	productService.deleteProduct(productId);
+	getRefreshedTable();
 	
 }
 @FXML public void deleteButtonClicked()
@@ -166,7 +169,7 @@ public void deleteButtonClickedThroughHyperlink(int productId)
 	ListItems=ProductTable.getItems();
 	SelectedListItem=ProductTable.getSelectionModel().getSelectedItems();	
 	int id=SelectedListItem.get(0).getProductId();
-	SelectedListItem.forEach(ListItems::remove);
+	//SelectedListItem.forEach(ListItems::remove);
 	boolean productDeleted=false;
 	productDeleted=productService.deleteProduct(id);
 	
@@ -177,12 +180,21 @@ public void deleteButtonClickedThroughHyperlink(int productId)
 	else {
 		System.out.println("Product not Deleted");
 	}
+	getRefreshedTable();
 	
 }
+@FXML TableColumn<ProductDetails,Double>WholesalePrice;
+@FXML TableColumn<ProductDetails,Double>RetailPrice;
+@FXML TableColumn<ProductDetails,Double>Discount;
+@FXML TableColumn<ProductDetails,Integer>Stock;
 @Override
 public void initialize(URL arg0, ResourceBundle arg1) 
 {	
 	//this.customerName.textProperty().bind(this.customer.getName());
+	RetailPrice.setCellFactory(TextFieldTableCell.<ProductDetails,Double>forTableColumn(new DoubleStringConverter()));
+	WholesalePrice.setCellFactory(TextFieldTableCell.<ProductDetails,Double>forTableColumn(new DoubleStringConverter()));
+	Discount.setCellFactory(TextFieldTableCell.<ProductDetails,Double>forTableColumn(new DoubleStringConverter()));
+	Stock.setCellFactory(TextFieldTableCell.<ProductDetails,Integer>forTableColumn(new IntegerStringConverter()));
 	System.out.println("Inside Initialize");
 	ProductTable.setItems(data);
 	populate(retrieveData());	
@@ -230,6 +242,123 @@ private void populate(final List < ProductDetails > products)
 	}
 
 }
+
+
+
+@FXML private <T>void setEditedValue(CellEditEvent<ProductDetails,T> event)
+{
+	if("ProductName".equals(event.getTableColumn().getId())) {
+		String ProductName=event.getNewValue().toString();
+		event.getTableView().getItems().get(event.getTablePosition().getRow()).setName(new SimpleStringProperty(ProductName));
+	}
+	if("ProductDesc".equals(event.getTableColumn().getId())) {
+		String ProductDesc=event.getNewValue().toString();
+		event.getTableView().getItems().get(event.getTablePosition().getRow()).setDescription(new SimpleStringProperty(ProductDesc));
+	}
+	if("WholesalePrice".equals(event.getTableColumn().getId())) {
+		Double wholesalePrice=(Double)event.getNewValue();
+		event.getTableView().getItems().get(event.getTablePosition().getRow()).setWholesalePrice(new SimpleDoubleProperty(wholesalePrice));
+		WholesalePrice.setCellFactory(TextFieldTableCell.<ProductDetails,Double>forTableColumn(new DoubleStringConverter()));
+		
+	}
+	if("RetailPrice".equals(event.getTableColumn().getId())) {
+		Double retailPrice=(Double)event.getNewValue();
+		event.getTableView().getItems().get(event.getTablePosition().getRow()).setRetailPrice(new SimpleDoubleProperty(retailPrice));
+		RetailPrice.setCellFactory(TextFieldTableCell.<ProductDetails,Double>forTableColumn(new DoubleStringConverter()));
+	}
+	if("Discount".equals(event.getTableColumn().getId())) {
+		Double discount=(Double)event.getNewValue();
+		event.getTableView().getItems().get(event.getTablePosition().getRow()).setDiscount(new SimpleDoubleProperty(discount));
+		Discount.setCellFactory(TextFieldTableCell.<ProductDetails,Double>forTableColumn(new DoubleStringConverter()));	
+	
+	}
+	if("Stock".equals(event.getTableColumn().getId())) {
+		Integer stock=(Integer)event.getNewValue();
+		event.getTableView().getItems().get(event.getTablePosition().getRow()).setStock(new SimpleIntegerProperty(stock));
+		Stock.setCellFactory(TextFieldTableCell.<ProductDetails,Integer>forTableColumn(new IntegerStringConverter()));	
+	}
+	/*
+	if("joiningDate".equals(event.getTableColumn().getId())) {
+		String joiningDate=event.getNewValue().toString();
+		event.getTableView().getItems().get(event.getTablePosition().getRow()).setJoiningDate(new SimpleStringProperty(joiningDate));
+	}
+	*/
+	
+}
+
+
+
+
+
+@FXML public void saveProduct()
+{
+	ObservableList < ProductDetails> ObproductList;
+	
+	ObproductList =  ProductTable.getSelectionModel().getSelectedItems();
+	System.out.println(ObproductList.get(0).getDescription());
+	if(ObproductList!=null)
+	{
+		productService.saveCustomer(ObproductList);
+		productList.clear();
+		data.clear();
+		ProductTable.setItems(data);
+		populate(retrieveData());
+		
+	}
+	
+}
+
+@FXML
+TextField add_productName;
+@FXML
+TextField add_prodDesc;
+@FXML
+TextField add_retailPrice;
+
+@FXML
+TextField add_wholesalePrice;
+@FXML
+TextField add_Discount;
+@FXML
+TextField add_stock;
+
+@FXML
+public void addProduct(ActionEvent event){
+	String productName=add_productName.getText();
+	String productDesc=add_prodDesc.getText();
+	Double retailPrice=Double.parseDouble(add_retailPrice.getText());
+	Double wholesalePrice=Double.parseDouble(add_wholesalePrice.getText());
+	Double discount=Double.parseDouble(add_Discount.getText());
+	Integer stock=Integer.parseInt(add_stock.getText());
+	if(productName!=null && productDesc!=null && retailPrice!=null && wholesalePrice!=null && discount!=null && stock!=null )
+	{
+		System.out.println(productName+" "+productDesc+" "+productDesc+" "+wholesalePrice+" "+discount+" "+stock);
+		ProductDetails prod=new ProductDetails();
+		prod.setName(new SimpleStringProperty(productName));
+		prod.setDescription(new SimpleStringProperty(productDesc));
+		prod.setRetailPrice(new SimpleDoubleProperty(retailPrice));
+		prod.setWholesalePrice(new SimpleDoubleProperty(wholesalePrice));
+		prod.setDiscount(new SimpleDoubleProperty(discount));
+		prod.setStock(new SimpleIntegerProperty(stock));
+	    
+		productService.addProduct(prod);
+		
+		getRefreshedTable();
+		((Node)(event.getSource())).getScene().getWindow().hide();
+	}
+	
+	
+	
+	
+}
+public void getRefreshedTable()
+{
+	productList.clear();
+	data.clear();
+	ProductTable.setItems(data);
+	populate(retrieveData());
+}
+
  @FXML private void createExcelFile()
  {
 	 
