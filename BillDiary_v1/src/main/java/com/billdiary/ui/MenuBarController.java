@@ -20,9 +20,12 @@ public class MenuBarController {
 	//ResourceBundle bundle = ResourceBundle.getBundle("resources.UIResources");
 	@Autowired
 	public LoginController loginController;
-	
+	@Autowired
+	public HomeController homeController;
 	@Autowired
 	public LayoutController layoutController;
+	@Autowired
+	public ShopController shopController;
 	
 	@FXML Menu rightMenu;
 	public MenuBarController() {
@@ -46,12 +49,15 @@ public class MenuBarController {
 	     stage.setMinWidth(800);
 	       stage.setScene(scene);
 	        stage.show();*/
+		shopController.getShopDetails();
+		
 	        
 	}
 	@FXML private void addProductDetails()
 	{
 		
 		SpringFxmlLoader loader=SpringFxmlLoader.getInstance();
+		homeController.showProduct();
 		AnchorPane addProduct=(AnchorPane) loader.load(URLS.ADD_PRODUCT_DETAILS_PAGE);
 		BorderPane root = new BorderPane();
 		root.setCenter(addProduct);
