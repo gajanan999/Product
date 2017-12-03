@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-
+import org.controlsfx.control.table.TableFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Controller;
 import com.billdiary.config.SpringFxmlLoader;
 import com.billdiary.model.Customer;
 import com.billdiary.model.Product;
-import com.billdiary.service.CustomerService;
+import com.billdiary.service.CustomerService; 
 import com.billdiary.utility.Constants;
 import com.billdiary.utility.URLS;
 
@@ -77,6 +77,7 @@ public class ManageInvoiceController implements Initializable  {
 	
 	
 	
+	
 	Customer selectedCustomer=null;
 	
 	@FXML
@@ -131,6 +132,9 @@ public class ManageInvoiceController implements Initializable  {
 		productPrice.setCellFactory(TextFieldTableCell.<Product,Double>forTableColumn(new DoubleStringConverter()));
 		productDiscount.setCellFactory(TextFieldTableCell.<Product,Double>forTableColumn(new DoubleStringConverter()));
 		productID.setCellFactory(TextFieldTableCell.<Product,Integer>forTableColumn(new IntegerStringConverter()));
+		
+
+		
 		
 	}
 	

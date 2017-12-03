@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import org.controlsfx.control.table.TableFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -51,6 +52,8 @@ public class ManageCustomerController implements Initializable {
 	@FXML
 	private TableView < Customer > customerTable;
 	
+	
+	
     private ObservableList < Customer > data = FXCollections.observableArrayList();
 	
 	
@@ -62,6 +65,8 @@ public class ManageCustomerController implements Initializable {
 		
 		customerTable.setItems(data);
 		populate(retrieveData());
+		@SuppressWarnings("unchecked")
+		TableFilter filter =new TableFilter(customerTable);
 		
 	}
 	
