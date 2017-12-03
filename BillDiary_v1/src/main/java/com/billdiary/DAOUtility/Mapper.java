@@ -6,7 +6,7 @@ import java.util.List;
 import com.billdiary.entities.CustomerEntity;
 import com.billdiary.entities.ProductEntity;
 import com.billdiary.model.Customer;
-import com.billdiary.model.ProductDetails;
+import com.billdiary.model.Product;
 import com.billdiary.model.User;
 import com.billdiary.model.User1;
 
@@ -36,12 +36,12 @@ public class Mapper {
 	}
 
 	
-	public List<ProductDetails> getProductModels(List<ProductEntity> productEntityList) {
-		List<ProductDetails> productList=new ArrayList<>();
+	public List<Product> getProductModels(List<ProductEntity> productEntityList) {
+		List<Product> productList=new ArrayList<>();
 		
 		for(ProductEntity productEntity:productEntityList)
 		{
-			ProductDetails prod=new ProductDetails();
+			Product prod=new Product();
 			prod.setProductId(new SimpleIntegerProperty(productEntity.getId()));
 			prod.setDescription(new SimpleStringProperty(productEntity.getDescription()));
 			prod.setDiscount(new SimpleDoubleProperty(productEntity.getDiscount()));
@@ -125,9 +125,9 @@ public class Mapper {
 	}
 
 
-	public List<ProductEntity> getProdEntitiesFromObservableList(ObservableList<ProductDetails> obproductList) {
+	public List<ProductEntity> getProdEntitiesFromObservableList(ObservableList<Product> obproductList) {
 		List<ProductEntity> productEntityList = new ArrayList<>();
-		for(ProductDetails prod:obproductList)
+		for(Product prod:obproductList)
 		{
 			ProductEntity productEntity =new ProductEntity();
 			productEntity.setDescription(prod.getDescription());;
@@ -143,7 +143,7 @@ public class Mapper {
 	}
 
 
-	public ProductEntity getProductEntity(ProductDetails prod) {
+	public ProductEntity getProductEntity(Product prod) {
 		ProductEntity productEntity =new ProductEntity();
 		productEntity.setId(0);
 		productEntity.setDescription(prod.getDescription());

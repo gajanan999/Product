@@ -9,7 +9,7 @@ import com.billdiary.dao.ProductDAO;
 import com.billdiary.entities.CustomerEntity;
 import com.billdiary.entities.ProductEntity;
 import com.billdiary.model.Customer;
-import com.billdiary.model.ProductDetails;
+import com.billdiary.model.Product;
 
 import javafx.collections.ObservableList;
 
@@ -18,9 +18,9 @@ public class ProductService {
 	@Autowired
 	ProductDAO productDAO;
 	
-	public List<ProductDetails> fetchProducts()
+	public List<Product> fetchProducts()
 	{
-		List<ProductDetails> productList=new ArrayList<>();
+		List<Product> productList=new ArrayList<>();
 		List<ProductEntity> productEntityList=new ArrayList<>();
 		try {
 			productEntityList=productDAO.fetchProducts();
@@ -44,18 +44,18 @@ public class ProductService {
 		}
 		return productDeleted;
 	}
-	public List<ProductDetails> saveCustomer(ObservableList<ProductDetails> obproductList) {
+	public List<Product> saveCustomer(ObservableList<Product> obproductList) {
 		// TODO Auto-generated method stub
 		Mapper m=new Mapper();
 		List<ProductEntity>  productEntityList = m.getProdEntitiesFromObservableList(obproductList);
 		List<ProductEntity> updatedProdEntities = new ArrayList<>();
 		updatedProdEntities=productDAO.saveCustomer(productEntityList);
-		List<ProductDetails> productList =new ArrayList<>();
+		List<Product> productList =new ArrayList<>();
 		productList=m.getProductModels(updatedProdEntities);
 		
 		return productList;	
 	}
-	public boolean addProduct(ProductDetails prod) {
+	public boolean addProduct(Product prod) {
 		Mapper m=new Mapper();
 		boolean productAdded=false;
 		ProductEntity prodEntity=m.getProductEntity(prod);

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
 
 import com.billdiary.config.SpringFxmlLoader;
@@ -206,6 +207,9 @@ public class ManageCustomerController implements Initializable {
 		SpringFxmlLoader loader=SpringFxmlLoader.getInstance();
 		//ResourceBundle bundle = ResourceBundle.getBundle("resources.UIResources");
 		StackPane addShop=(StackPane) loader.load(URLS.ADD_CUSTOMER);
+		ApplicationContext applicationContext=SpringFxmlLoader.getApplicationcontext();
+		AddCustomerController addCustomerController=(AddCustomerController) applicationContext.getBean("AddCustomerController");
+		addCustomerController.setParentName("CustomerController");
 		BorderPane root = new BorderPane();
 		root.setCenter(addShop);
 		layoutController.loadWindow(root,"Add Customer Details",Constants.POPUP_WINDOW_WIDTH,Constants.POPUP_WINDOW_HEIGHT);

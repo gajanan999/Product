@@ -18,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 
-import com.billdiary.model.ProductDetails;
+import com.billdiary.model.Product;
 import com.billdiary.model.User;
 import com.billdiary.utility.Constants;
 
@@ -70,9 +70,9 @@ public class LoginDAO extends AbstractJpaDAO< User >{
 	}
 	
 	
-	public ProductDetails fetchProducts()
+	public Product fetchProducts()
 	{
-		ProductDetails p=null;
+		Product p=null;
 		try
 		{
 		Query q=entityManager.createNativeQuery("select * from product");
@@ -86,7 +86,7 @@ public class LoginDAO extends AbstractJpaDAO< User >{
 		//System.out.println(o.get(0)+ " "+ o.get(1)+ " "+o.get(2)+" "+o.get(3)+" "+o.get(4)+" "+o.get(5)+" "+o.get(6));
 		Hyperlink Delete1 = new Hyperlink();
 		
-		p=new ProductDetails((int)o[0], o[1].toString(), (double)o[3], (double)o[4], o[2].toString(), (int)o[6], (double)o[5], Delete1);
+		p=new Product((int)o[0], o[1].toString(), (double)o[3], (double)o[4], o[2].toString(), (int)o[6], (double)o[5], Delete1);
 		
 		
 		}

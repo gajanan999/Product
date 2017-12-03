@@ -103,5 +103,8 @@ public class SpringFxmlLoader {
         }
  
     }
+	public static ApplicationContext getApplicationcontext() {
+		return applicationContext;
+	}
 
 }

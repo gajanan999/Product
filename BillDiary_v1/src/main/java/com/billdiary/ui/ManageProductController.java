@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.billdiary.config.SpringFxmlLoader;
 import com.billdiary.model.Customer;
-import com.billdiary.model.ProductDetails;
+import com.billdiary.model.Product;
 import com.billdiary.service.ProductService;
 //import com.billdiary.service.ProductService;
 import com.billdiary.utility.Constants;
@@ -48,22 +48,22 @@ public class ManageProductController implements Initializable{
 	@Autowired
 	private ProductService productService;
 	
-	List<ProductDetails> productList=new ArrayList<>();
+	List<Product> productList=new ArrayList<>();
 	@FXML
 	TextField productName;
 	@FXML 
 	TextField productId;
 	@FXML
-	private TableView < ProductDetails > ProductTable;
+	private TableView < Product > ProductTable;
 	
-    private ObservableList < ProductDetails > data = FXCollections.observableArrayList();
+    private ObservableList < Product > data = FXCollections.observableArrayList();
     
 @FXML public void searchProduct()
 {
 	
 	System.out.println("Inside Search product");
-	ObservableList<ProductDetails> data = FXCollections.observableArrayList();
-	List<ProductDetails> obj = productService.fetchProducts();
+	ObservableList<Product> data = FXCollections.observableArrayList();
+	List<Product> obj = productService.fetchProducts();
 	int size = obj.size();
 	String ProdName = productName.getText();
 	if(productId.getText().equals(""))
@@ -75,7 +75,7 @@ public class ManageProductController implements Initializable{
 	boolean search=true;
 	int count=0;
 	
-	for(ProductDetails pd:obj)
+	for(Product pd:obj)
 	{	
 		count++;
 		if(ProdName.equals("") && ProdId==0)
@@ -102,7 +102,7 @@ public class ManageProductController implements Initializable{
 		if(count>=size)
 		{
 			System.out.println("inside else");
-			ObservableList< ProductDetails> ListItems;
+			ObservableList< Product> ListItems;
 			ListItems=ProductTable.getItems();
 			System.out.println(ListItems.size());
 			while(ListItems.size()!=0)
@@ -114,7 +114,7 @@ public class ManageProductController implements Initializable{
 	if(search == true)
 	{	
 		count = 0;
-		for(ProductDetails pd:obj)
+		for(Product pd:obj)
 		{
 			if(ProdId ==(pd.getProductId())|| ProdName.toLowerCase().equals(pd.getName().toLowerCase()))
 			{
@@ -128,7 +128,7 @@ public class ManageProductController implements Initializable{
 			if(count>=obj.size()-1&& search ==true)
 			{
 				System.out.println("inside else");
-				ObservableList< ProductDetails> ListItems;
+				ObservableList< Product> ListItems;
 				ListItems=ProductTable.getItems();
 				System.out.println(ListItems.size());
 				while(ListItems.size()!=0)
@@ -165,7 +165,7 @@ public void deleteButtonClickedThroughHyperlink(int productId)
 {
 	
 	System.out.println("Inside DeleteButtonClicked");
-	ObservableList< ProductDetails> ListItems,SelectedListItem;
+	ObservableList< Product> ListItems,SelectedListItem;
 	ListItems=ProductTable.getItems();
 	SelectedListItem=ProductTable.getSelectionModel().getSelectedItems();	
 	int id=SelectedListItem.get(0).getProductId();
@@ -183,25 +183,25 @@ public void deleteButtonClickedThroughHyperlink(int productId)
 	getRefreshedTable();
 	
 }
-@FXML TableColumn<ProductDetails,Double>WholesalePrice;
-@FXML TableColumn<ProductDetails,Double>RetailPrice;
-@FXML TableColumn<ProductDetails,Double>Discount;
-@FXML TableColumn<ProductDetails,Integer>Stock;
+@FXML TableColumn<Product,Double>WholesalePrice;
+@FXML TableColumn<Product,Double>RetailPrice;
+@FXML TableColumn<Product,Double>Discount;
+@FXML TableColumn<Product,Integer>Stock;
 @Override
 public void initialize(URL arg0, ResourceBundle arg1) 
 {	
 	//this.customerName.textProperty().bind(this.customer.getName());
-	RetailPrice.setCellFactory(TextFieldTableCell.<ProductDetails,Double>forTableColumn(new DoubleStringConverter()));
-	WholesalePrice.setCellFactory(TextFieldTableCell.<ProductDetails,Double>forTableColumn(new DoubleStringConverter()));
-	Discount.setCellFactory(TextFieldTableCell.<ProductDetails,Double>forTableColumn(new DoubleStringConverter()));
-	Stock.setCellFactory(TextFieldTableCell.<ProductDetails,Integer>forTableColumn(new IntegerStringConverter()));
+	RetailPrice.setCellFactory(TextFieldTableCell.<Product,Double>forTableColumn(new DoubleStringConverter()));
+	WholesalePrice.setCellFactory(TextFieldTableCell.<Product,Double>forTableColumn(new DoubleStringConverter()));
+	Discount.setCellFactory(TextFieldTableCell.<Product,Double>forTableColumn(new DoubleStringConverter()));
+	Stock.setCellFactory(TextFieldTableCell.<Product,Integer>forTableColumn(new IntegerStringConverter()));
 	System.out.println("Inside Initialize");
 	ProductTable.setItems(data);
 	populate(retrieveData());	
 }
 	
 	
-private List<ProductDetails> retrieveData(){
+private List<Product> retrieveData(){
 	
 	try 
 	{
@@ -217,18 +217,18 @@ private List<ProductDetails> retrieveData(){
 	{
 		System.out.println(e.getMessage());
 	}
-	return new ArrayList<ProductDetails>();
+	return new ArrayList<Product>();
 	
 	
 }
 	
-private void populate(final List < ProductDetails > products) 
+private void populate(final List < Product > products) 
 {
 	try {
 	System.out.println("inside populate");
 	if(data.isEmpty())
 	{
-        for(ProductDetails prods:products)
+        for(Product prods:products)
         {
         	data.add(prods);
         	int pid=prods.getProductId();
@@ -245,7 +245,7 @@ private void populate(final List < ProductDetails > products)
 
 
 
-@FXML private <T>void setEditedValue(CellEditEvent<ProductDetails,T> event)
+@FXML private <T>void setEditedValue(CellEditEvent<Product,T> event)
 {
 	if("ProductName".equals(event.getTableColumn().getId())) {
 		String ProductName=event.getNewValue().toString();
@@ -258,24 +258,24 @@ private void populate(final List < ProductDetails > products)
 	if("WholesalePrice".equals(event.getTableColumn().getId())) {
 		Double wholesalePrice=(Double)event.getNewValue();
 		event.getTableView().getItems().get(event.getTablePosition().getRow()).setWholesalePrice(new SimpleDoubleProperty(wholesalePrice));
-		WholesalePrice.setCellFactory(TextFieldTableCell.<ProductDetails,Double>forTableColumn(new DoubleStringConverter()));
+		WholesalePrice.setCellFactory(TextFieldTableCell.<Product,Double>forTableColumn(new DoubleStringConverter()));
 		
 	}
 	if("RetailPrice".equals(event.getTableColumn().getId())) {
 		Double retailPrice=(Double)event.getNewValue();
 		event.getTableView().getItems().get(event.getTablePosition().getRow()).setRetailPrice(new SimpleDoubleProperty(retailPrice));
-		RetailPrice.setCellFactory(TextFieldTableCell.<ProductDetails,Double>forTableColumn(new DoubleStringConverter()));
+		RetailPrice.setCellFactory(TextFieldTableCell.<Product,Double>forTableColumn(new DoubleStringConverter()));
 	}
 	if("Discount".equals(event.getTableColumn().getId())) {
 		Double discount=(Double)event.getNewValue();
 		event.getTableView().getItems().get(event.getTablePosition().getRow()).setDiscount(new SimpleDoubleProperty(discount));
-		Discount.setCellFactory(TextFieldTableCell.<ProductDetails,Double>forTableColumn(new DoubleStringConverter()));	
+		Discount.setCellFactory(TextFieldTableCell.<Product,Double>forTableColumn(new DoubleStringConverter()));	
 	
 	}
 	if("Stock".equals(event.getTableColumn().getId())) {
 		Integer stock=(Integer)event.getNewValue();
 		event.getTableView().getItems().get(event.getTablePosition().getRow()).setStock(new SimpleIntegerProperty(stock));
-		Stock.setCellFactory(TextFieldTableCell.<ProductDetails,Integer>forTableColumn(new IntegerStringConverter()));	
+		Stock.setCellFactory(TextFieldTableCell.<Product,Integer>forTableColumn(new IntegerStringConverter()));	
 	}
 	/*
 	if("joiningDate".equals(event.getTableColumn().getId())) {
@@ -292,7 +292,7 @@ private void populate(final List < ProductDetails > products)
 
 @FXML public void saveProduct()
 {
-	ObservableList < ProductDetails> ObproductList;
+	ObservableList < Product> ObproductList;
 	
 	ObproductList =  ProductTable.getSelectionModel().getSelectedItems();
 	System.out.println(ObproductList.get(0).getDescription());
@@ -333,7 +333,7 @@ public void addProduct(ActionEvent event){
 	if(productName!=null && productDesc!=null && retailPrice!=null && wholesalePrice!=null && discount!=null && stock!=null )
 	{
 		System.out.println(productName+" "+productDesc+" "+productDesc+" "+wholesalePrice+" "+discount+" "+stock);
-		ProductDetails prod=new ProductDetails();
+		Product prod=new Product();
 		prod.setName(new SimpleStringProperty(productName));
 		prod.setDescription(new SimpleStringProperty(productDesc));
 		prod.setRetailPrice(new SimpleDoubleProperty(retailPrice));

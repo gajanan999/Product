@@ -13,7 +13,7 @@ import javafx.scene.layout.HBox;
 
 
 @Component
-public class ProductDetails {
+public class Product {
 	
 	private SimpleIntegerProperty productId;
 	
@@ -29,6 +29,8 @@ public class ProductDetails {
 	
 	private SimpleDoubleProperty discount;
 	
+	private SimpleIntegerProperty quantity;
+	
 	private HBox action;
 	
 	
@@ -36,11 +38,11 @@ public class ProductDetails {
 	
 	private Hyperlink save;
 	
-	public ProductDetails()
+	public Product()
 	{
 	
 	}
-	public ProductDetails(int prodId, String nameOfProduct,
+	public Product(int prodId, String nameOfProduct,
 			double wholesale_Price, double retail_Price, String descriptionOfProduct,
 			int stockOfProduct, double Discount, Hyperlink delete) {
 		
@@ -136,6 +138,13 @@ public class ProductDetails {
 	}
 	public void setAction(HBox action) {
 		this.action = action;
+	}
+
+	public int getQuantity() {
+		return quantity.get();
+	}
+	public void setQuantity(SimpleIntegerProperty quantity) {
+		this.quantity = quantity;
 	}
 	
 }

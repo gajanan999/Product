@@ -11,7 +11,8 @@ public class Constants {
 	public static final int WINDOW_HEIGHT=695;
 	public static final int POPUP_WINDOW_WIDTH=800;
 	public static final int POPUP_WINDOW_HEIGHT=600;
-	
+	public static final int SEARCH_CUSTOMER_WIDTH=1000;
+	public static final int SEARCH_CUSTOMER_HEIGHT=600;
 	
 	
 	

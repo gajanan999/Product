@@ -84,7 +84,22 @@ public class HomeController {
 		}
 		
 	}
-	
+	@FXML public void showInvoice()
+	{
+		LOGGER.debug("Entering Class HomeController : method :showProduct");
+		try{
+		centerBorderPane.setCenter(null);
+		SpringFxmlLoader loader=SpringFxmlLoader.getInstance();
+		StackPane manageInvoice=(StackPane)loader.load(URLS.MANAGE_INVOICE);
+		mainViewTitle.setText("Invoice");
+		centerBorderPane.setCenter(manageInvoice);
+		}
+		catch(Exception e)
+		{
+			LOGGER.debug("Entering Class HomeController : method :manageInvoice "+e.getMessage());
+		}
+		
+	}
 	
 	@FXML Text trylanguage;
 	
