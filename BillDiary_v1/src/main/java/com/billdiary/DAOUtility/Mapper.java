@@ -49,7 +49,7 @@ public class Mapper {
 			prod.setRetailPrice(new SimpleDoubleProperty(productEntity.getRetail_price()));
 			prod.setWholesalePrice(new SimpleDoubleProperty(productEntity.getWholesale_price()));
 			prod.setStock(new SimpleIntegerProperty(productEntity.getStock()));
-			prod.setDelete(new Hyperlink("Delete"));
+			//prod.setDelete(new Hyperlink("Delete"));
 			productList.add(prod);
 			
 			

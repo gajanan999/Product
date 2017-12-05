@@ -15,6 +15,11 @@ import javafx.scene.layout.HBox;
 @Component
 public class Product {
 	
+	private SimpleIntegerProperty serialNumber;
+	
+	private SimpleDoubleProperty totalPrice;
+	
+	
 	private SimpleIntegerProperty productId;
 	
 	private  SimpleStringProperty name;
@@ -55,7 +60,7 @@ public class Product {
 		this.discount =new SimpleDoubleProperty (Discount);
 		this.delete = new Hyperlink("Delete");
 		this.delete.setStyle("-fx-text-fill: #606060;");
-		this.save=new Hyperlink("save");
+		this.save=new Hyperlink("Save");
 		this.save.setStyle("-fx-text-fill: #606060;");
 		this.action=new HBox(delete,save);
 	}
@@ -105,7 +110,7 @@ public class Product {
 	public Hyperlink getDelete() {
 		if(delete==null)
 		{
-		 delete=new Hyperlink("delete");
+		 delete=new Hyperlink("Delete");
 		 this.delete.setStyle("-fx-text-fill: #606060;");
 		}
 		return delete;
@@ -116,7 +121,7 @@ public class Product {
 	public Hyperlink getSave() {
 		if(save==null)
 		{
-			save=new Hyperlink("save");
+			save=new Hyperlink("Save");
 			this.save.setStyle("-fx-text-fill: #606060;");
 		}
 		
@@ -146,5 +151,16 @@ public class Product {
 	public void setQuantity(SimpleIntegerProperty quantity) {
 		this.quantity = quantity;
 	}
-	
+	public int getSerialNumber() {
+		return serialNumber.get();
+	}
+	public void setSerialNumber(SimpleIntegerProperty serialNumber) {
+		this.serialNumber = serialNumber;
+	}
+	public Double getTotalPrice() {
+		return totalPrice.get();
+	}
+	public void setTotalPrice(SimpleDoubleProperty totalPrice) {
+		this.totalPrice = totalPrice;
+	}
 }

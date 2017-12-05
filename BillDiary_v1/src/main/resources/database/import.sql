@@ -39,7 +39,7 @@ create table if not exists product
 					
 					
 insert into product values(null
-						,'mobile'
+					,'mobile'
 						,'0'
 						,'apple'
 						,'30000'

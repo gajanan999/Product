@@ -91,6 +91,7 @@
                   <Button layoutX="140.0" layoutY="402.0" mnemonicParsing="false" onAction="#deleteCustomer" prefHeight="25.0" prefWidth="116.0" text="Delete " />
                   <Button layoutX="854.0" layoutY="102.0" mnemonicParsing="false" onAction="#searchCustomer" prefHeight="25.0" prefWidth="116.0" text="Search" />
                   <Button layoutX="260.0" layoutY="402.0" mnemonicParsing="false" onAction="#saveCustomer" prefHeight="25.0" prefWidth="116.0" text="Save " />
+                  <Button layoutX="318.0" layoutY="29.0" mnemonicParsing="false" onAction="#filter" text="Filter" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

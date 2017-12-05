@@ -41,6 +41,10 @@ public class AddCustomerController implements Initializable{
 	TextField add_emailID;
 	@FXML
 	ChoiceBox<?> add_country;
+	@FXML
+	ChoiceBox<?> add_state;
+	@FXML 
+	TextArea add_additionalInfo;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -82,7 +86,7 @@ public class AddCustomerController implements Initializable{
 			}else if(this.parentName.equals("InvoiceController")) {
 				ApplicationContext applicationContext=SpringFxmlLoader.getApplicationcontext();
 				ManageInvoiceController manageInvoiceController=(ManageInvoiceController) applicationContext.getBean("ManageInvoiceController");
-				manageInvoiceController.refreshCustomerChoicebox();
+				manageInvoiceController.refreshCustomerList();;
 			}
 			
 			

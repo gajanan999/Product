@@ -15,21 +15,20 @@
          <content>
             <Pane maxHeight="600.0" maxWidth="995.0" minHeight="600.0" minWidth="990.0" prefHeight="600.0" prefWidth="995.0">
                <children>
-                  <Text layoutX="37.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Name" />
-                  <Separator layoutX="16.0" layoutY="202.0" prefHeight="3.0" prefWidth="964.0" />
+                  <TextField fx:id="invCustName" layoutX="140.0" layoutY="29.0" prefHeight="25.0" prefWidth="141.0" promptText="Type Customer Name" />
+                  <TextArea fx:id="invAddress" layoutX="139.0" layoutY="66.0" prefHeight="40.0" prefWidth="141.0" />
+                  <TextField fx:id="invMobileNo" layoutX="140.0" layoutY="115.0" prefHeight="25.0" prefWidth="141.0" promptText="XXXXXXXXXX" />
+                  <DatePicker fx:id="invDueDate" layoutX="594.0" layoutY="115.0" prefHeight="25.0" prefWidth="148.0" />
+                  <TextField fx:id="invProductName" layoutX="139.0" layoutY="163.0" prefHeight="25.0" prefWidth="141.0" promptText="Product Name/Code" />
+                  <TextField fx:id="invProductQuantity" layoutX="357.0" layoutY="163.0" prefHeight="25.0" prefWidth="141.0" promptText="0" />
+                  <TextField fx:id="invProductPrice" layoutX="594.0" layoutY="163.0" prefHeight="25.0" prefWidth="148.0" promptText="0.0" />
+                  <Button layoutX="794.0" layoutY="162.0" mnemonicParsing="false" onAction="#addProdcutToTable" prefHeight="25.0" prefWidth="116.0" text="ADD TO BILL" />
                   <TableView fx:id="productTable" editable="true" layoutX="18.0" layoutY="212.0" prefHeight="245.0" prefWidth="960.0">
                     <columns>
-                      <TableColumn id="sr_no" editable="false" prefWidth="75.0" text="SR.NO">
+                      <TableColumn id="serialNumber" fx:id="serialNumber" editable="false" prefWidth="75.0" text="SR.NO">
                             <cellValueFactory>
-							<PropertyValueFactory property="productId" />
+							<PropertyValueFactory property="serialNumber" />
 							</cellValueFactory>
-                           <graphic>
-                              <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="32.0" text="+">
-                                 <padding>
-                                    <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
-                                 </padding>
-                              </Button>
-                           </graphic>
 					  </TableColumn>
                         <TableColumn id="productID" fx:id="productID" editable="false" prefWidth="75.0" text="Product ID">
                            <cellValueFactory>
@@ -53,9 +52,9 @@
 							</cellFactory>
                         </TableColumn>
                         <TableColumn id="productQuantity" fx:id="productQuantity" prefWidth="75.0" text="Quantity">
-                        	<!-- <cellValueFactory>
-							<PropertyValueFactory property="mobile_no" />
-							</cellValueFactory> -->
+                        	 <cellValueFactory>
+							<PropertyValueFactory property="quantity" />
+							</cellValueFactory>
 							<cellFactory>
 							<TextFieldTableCell fx:factory="forTableColumn" />
 							</cellFactory>
@@ -76,37 +75,43 @@
 							<TextFieldTableCell fx:factory="forTableColumn" />
 							</cellFactory>
                         </TableColumn>
-                        <TableColumn id="totalProductPrice" prefWidth="75.0" text="Total price">	
+                        <TableColumn fx:id="totalPrice" prefWidth="75.0" text="Total price">
+                        	<cellValueFactory>
+							<PropertyValueFactory property="totalPrice" />
+							</cellValueFactory>
+							<cellFactory>
+							<TextFieldTableCell fx:factory="forTableColumn" />
+							</cellFactory>
 						</TableColumn>
+                        <TableColumn id="action" prefWidth="75.0" text="Action">
+                            <cellValueFactory>
+								<PropertyValueFactory property="delete" />
+							</cellValueFactory>
+                        </TableColumn>
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
+                  <Text layoutX="37.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Name" />
+                  <Separator layoutX="16.0" layoutY="202.0" prefHeight="3.0" prefWidth="964.0" />
                   <Text layoutX="37.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" />
-                  <TextArea fx:id="invAddress" layoutX="139.0" layoutY="66.0" prefHeight="40.0" prefWidth="141.0" />
                   <Text layoutX="37.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mobile no." />
-                  <TextField fx:id="invMobileNo" layoutX="140.0" layoutY="115.0" prefHeight="25.0" prefWidth="141.0" />
-                  <DatePicker fx:id="invDueDate" layoutX="594.0" layoutY="115.0" prefHeight="25.0" prefWidth="148.0" />
                   <Text layoutX="503.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Due Date" />
                   <Text layoutX="37.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product Name" />
-                  <TextField fx:id="customerName11" layoutX="139.0" layoutY="163.0" prefHeight="25.0" prefWidth="141.0" />
                   <Text layoutX="301.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity" />
-                  <TextField fx:id="customerName111" layoutX="357.0" layoutY="163.0" prefHeight="25.0" prefWidth="141.0" />
                   <Text layoutX="503.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price" />
-                  <TextField fx:id="customerName1111" layoutX="594.0" layoutY="163.0" prefHeight="25.0" prefWidth="148.0" />
-                  <Button layoutX="852.0" layoutY="170.0" mnemonicParsing="false" onAction="#addProdcutToTable" prefHeight="25.0" prefWidth="116.0" text="ADD" />
-                  <TextField fx:id="customerName11111" layoutX="842.0" layoutY="467.0" prefHeight="25.0" prefWidth="135.0" />
+                  <TextField fx:id="totalAmount" layoutX="842.0" layoutY="467.0" prefHeight="25.0" prefWidth="135.0" />
                   <Text layoutX="759.0" layoutY="484.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Amount" />
-                  <TextField fx:id="customerName111111" layoutX="842.0" layoutY="500.0" prefHeight="25.0" prefWidth="79.0" />
-                  <TextField fx:id="customerName111112" layoutX="842.0" layoutY="534.0" prefHeight="25.0" prefWidth="135.0" />
+                  <TextField fx:id="discount" layoutX="842.0" layoutY="500.0" prefHeight="25.0" prefWidth="79.0" />
+                  <TextField fx:id="finalAmount" layoutX="842.0" layoutY="534.0" prefHeight="25.0" prefWidth="135.0" />
                   <Text layoutX="759.0" layoutY="517.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Discount(%)" />
                   <Text layoutX="759.0" layoutY="551.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Final Amount" />
-                  <ChoiceBox fx:id="selCustChoicebox" layoutX="140.0" layoutY="29.0" prefHeight="25.0" prefWidth="141.0" />
                   <Text layoutX="503.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Invoice number" />
                   <Text fx:id="invNO" layoutX="615.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X" />
                   <Text layoutX="503.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
                   <Text fx:id="invDate" layoutX="594.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2001-01-01" />
+                  <Button layoutX="291.0" layoutY="29.0" mnemonicParsing="false" onAction="#showAddNewCustomerPage" prefHeight="25.0" prefWidth="122.0" text="Add New Customer" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

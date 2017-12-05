@@ -51,7 +51,7 @@ public class ManageCustomerController implements Initializable {
 	String address;
 	@FXML
 	private TableView < Customer > customerTable;
-	
+	TableFilter<Customer> filter;
 	
 	
     private ObservableList < Customer > data = FXCollections.observableArrayList();
@@ -65,11 +65,19 @@ public class ManageCustomerController implements Initializable {
 		
 		customerTable.setItems(data);
 		populate(retrieveData());
-		@SuppressWarnings("unchecked")
-		TableFilter filter =new TableFilter(customerTable);
+		filter =new TableFilter(customerTable);
+		
 		
 	}
 	
+	@FXML
+	public void filter()
+	{
+		System.out.println("dfd");
+		filter.selectValue(customerTable.getColumns().get(1),customerName.getText());
+		filter.executeFilter();
+		
+	}
 	
 	private List<Customer> retrieveData(){
 		try {
