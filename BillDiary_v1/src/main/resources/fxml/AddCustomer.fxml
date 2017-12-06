@@ -11,47 +11,61 @@
    <children>
       <Pane prefHeight="400.0" prefWidth="600.0">
          <children>
-            <Text layoutX="52.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Name" />
-            <Text layoutX="52.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" />
-            <Text layoutX="412.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mobile No." />
-            <Text layoutX="55.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City" />
-            <Text layoutX="53.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Country" />
-            <Text layoutX="419.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email ID" />
-            <TextField fx:id="add_customerName" layoutX="175.0" layoutY="50.0" prefHeight="25.0" prefWidth="189.0" />
-            <TextArea fx:id="add_address" layoutX="175.0" layoutY="86.0" prefHeight="42.0" prefWidth="189.0" />
-            <TextField fx:id="add_mobileNo" layoutX="514.0" layoutY="50.0" prefHeight="25.0" prefWidth="189.0" />
-            <ChoiceBox fx:id="add_city" layoutX="175.0" layoutY="152.0" prefWidth="150.0" value="Baramati">
+            <Text layoutX="56.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Name" />
+            <Text layoutX="424.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" />
+            <Text layoutX="56.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mobile No." />
+            <Text layoutX="424.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City" />
+            <Text layoutX="424.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Country" />
+            <Text layoutX="56.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email ID" />
+            <TextField fx:id="addCustomerName" layoutX="179.0" layoutY="93.0" prefHeight="25.0" prefWidth="189.0" />
+            <TextArea fx:id="addAddress" layoutX="556.0" layoutY="85.0" prefHeight="42.0" prefWidth="189.0" />
+            <TextField fx:id="addMobileNo" layoutX="179.0" layoutY="175.0" prefHeight="25.0" prefWidth="189.0" />
+            <ChoiceBox fx:id="addCity" layoutX="556.0" layoutY="138.0" prefWidth="150.0" value="Baramati">
             <items>
                 <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="pune" />
+                    <String fx:value="Pune" />
                     <String fx:value="Solapur" />
                     <String fx:value="Baramati" />
+                    <String fx:value="Ahmadnagar" />
                     <String fx:value="Mumbai" />
                 </FXCollections>
             </items>
             </ChoiceBox>
-            <TextField fx:id="add_emailID" layoutX="515.0" layoutY="94.0" prefHeight="25.0" prefWidth="189.0" />
-            <ChoiceBox fx:id="add_country" layoutX="175.0" layoutY="227.0" prefWidth="150.0" value="India">
+            <TextField fx:id="addEmailID" layoutX="179.0" layoutY="215.0" prefHeight="25.0" prefWidth="189.0" />
+            <ChoiceBox fx:id="addCountry" layoutX="556.0" layoutY="215.0" prefWidth="150.0" value="India">
              <items>
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="India" />
-                    <String fx:value="America" />
+                    <String fx:value="US" />
+                    <String fx:value="Africa" />
                 </FXCollections>
             </items>
             </ChoiceBox>
-            <Button layoutX="552.0" layoutY="275.0" mnemonicParsing="false" onAction="#addCustomer" prefHeight="25.0" prefWidth="113.0" text="Save" />
-            <Text layoutX="52.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="State" />
-            <ChoiceBox fx:id="add_state" layoutX="175.0" layoutY="188.0" prefWidth="150.0" value="India">
+            <Button layoutX="568.0" layoutY="332.0" mnemonicParsing="false" onAction="#addCustomer" prefHeight="25.0" prefWidth="127.0" text="Save" />
+            <Text layoutX="424.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="State" />
+            <ChoiceBox fx:id="addState" layoutX="556.0" layoutY="175.0" prefWidth="150.0" value="India">
                <items>
                   <FXCollections fx:factory="observableArrayList">
                      <String fx:value="Maharashtra" />
                      <String fx:value="Madhyapradesh" />
                      <String fx:value="Karnataka" />
+                     <String fx:value="Gujarat" />
                   </FXCollections>
                </items>
             </ChoiceBox>
-            <Text layoutX="381.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Additional Information" />
-            <TextArea fx:id="add_additionalInfo" layoutX="515.0" layoutY="156.0" prefHeight="42.0" prefWidth="189.0" />
+            <Text layoutX="56.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Additional Information" />
+            <TextArea fx:id="addAdditionalInfo" layoutX="179.0" layoutY="262.0" prefHeight="42.0" prefWidth="189.0" />
+            <Text layoutX="56.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Group" />
+            <ChoiceBox fx:id="addCustomerGroup" layoutX="179.0" layoutY="138.0" prefWidth="150.0" value="India">
+               <items>
+                  <FXCollections fx:factory="observableArrayList">
+                     <String fx:value="WholeSale" />
+                     <String fx:value="Retail" /> 
+                  </FXCollections>
+               </items>
+            </ChoiceBox>
+            <Text layoutX="427.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zip Code" />
+            <TextField fx:id="addZipCode" layoutX="556.0" layoutY="258.0" prefHeight="25.0" prefWidth="189.0" />
          </children>
       </Pane>
    </children>

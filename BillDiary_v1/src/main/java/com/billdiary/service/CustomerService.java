@@ -28,7 +28,7 @@ public class CustomerService {
 		customerEntityList=customerDAO.fetchCustomers();
 		}catch(Exception e)
 		{
-			System.out.println(e.getMessage());
+			System.out.println("service "+e.getMessage());
 		}
 		Mapper m=new Mapper();
 		customerList=m.getCustomerModels(customerEntityList);

@@ -79,6 +79,10 @@ public class Mapper {
 			customerEntity.setCity(cust.getCity());
 			customerEntity.setCountry(cust.getCountry());
 			customerEntity.setEmailID(cust.getEmailID());
+			customerEntity.setAddAdditionalInfo(cust.getAddAdditionalInfo());
+			customerEntity.setState(cust.getState());
+			customerEntity.setCustomerGroup(cust.getCustomerGroup());
+			customerEntity.setZipCode(cust.getZipCode());
 			customerEntityList.add(customerEntity);
 		}
 		return customerEntityList;
@@ -103,6 +107,11 @@ public class Mapper {
 			cust.setCountry(new SimpleStringProperty(customerEntity.getCountry()));
 			cust.setMobile_no(new SimpleStringProperty(customerEntity.getMobile_no()));
 			cust.setEmailID(new SimpleStringProperty(customerEntity.getEmailID()));
+			cust.setAddAdditionalInfo(new SimpleStringProperty(customerEntity.getAddAdditionalInfo()));
+			cust.setState(new SimpleStringProperty(customerEntity.getState()));
+			cust.setCustomerGroup(new SimpleStringProperty(customerEntity.getCustomerGroup()));
+			cust.setZipCode(new SimpleStringProperty(customerEntity.getZipCode()));
+			
 			customerList.add(cust);
 		}
 		
@@ -120,6 +129,10 @@ public class Mapper {
 		customerEntity.setCity(cust.getCity());
 		customerEntity.setCountry(cust.getCountry());
 		customerEntity.setEmailID(cust.getEmailID());
+		customerEntity.setAddAdditionalInfo(cust.getAddAdditionalInfo());
+		customerEntity.setState(cust.getState());
+		customerEntity.setCustomerGroup(cust.getCustomerGroup());
+		customerEntity.setZipCode(cust.getZipCode());
 		
 		return customerEntity;
 	}
@@ -160,6 +173,8 @@ public class Mapper {
 	public Customer getCustomerOneModel(CustomerEntity customerEntity) {
 		// TODO Auto-generated method stub
 		Customer cust=new Customer();
+		try {
+		
 		cust.setCustomerID(new SimpleIntegerProperty(customerEntity.getCustomerID()));
 		//cust.setCustomerID(new SimpleIntegerProperty(customerEntity.getCustomerID()));
 		cust.setCustomerName(new SimpleStringProperty(customerEntity.getCustomerName()));
@@ -168,7 +183,15 @@ public class Mapper {
 		cust.setCountry(new SimpleStringProperty(customerEntity.getCountry()));
 		cust.setMobile_no(new SimpleStringProperty(customerEntity.getMobile_no()));
 		cust.setEmailID(new SimpleStringProperty(customerEntity.getEmailID()));
+		cust.setAddAdditionalInfo(new SimpleStringProperty(customerEntity.getAddAdditionalInfo()));
+		cust.setState(new SimpleStringProperty(customerEntity.getState()));
+		cust.setCustomerGroup(new SimpleStringProperty(customerEntity.getCustomerGroup()));
+		cust.setZipCode(new SimpleStringProperty(customerEntity.getZipCode()));
 		
+		}catch(Exception e)
+		{
+			System.out.println("Mapper"+ e.getMessage());
+		}
 		return cust;
 	}
 

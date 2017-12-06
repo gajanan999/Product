@@ -30,21 +30,26 @@ public class AddCustomerController implements Initializable{
 	@Autowired
 	private CustomerService customerService;
 	@FXML
-	TextField add_customerName;
+	TextField addCustomerName;
 	@FXML
-	TextArea add_address;
+	TextArea addAddress;
 	@FXML
-	TextField add_mobileNo;
+	TextField addMobileNo;
 	@FXML
-	ChoiceBox<?> add_city;
+	ChoiceBox<?> addCity;
 	@FXML
-	TextField add_emailID;
+	TextField addEmailID;
 	@FXML
-	ChoiceBox<?> add_country;
+	ChoiceBox<?> addCountry;
 	@FXML
-	ChoiceBox<?> add_state;
+	ChoiceBox<?> addState;
 	@FXML 
-	TextArea add_additionalInfo;
+	TextArea addAdditionalInfo;
+	@FXML
+	ChoiceBox<?> addCustomerGroup;
+	@FXML
+	TextField addZipCode;
+	
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -56,13 +61,18 @@ public class AddCustomerController implements Initializable{
 	
 	@FXML
 	public void addCustomer(ActionEvent event){
-		String customerName=add_customerName.getText();
-		String address=add_address.getText();
-		String mobileNO=add_mobileNo.getText();
-		String city=(String)add_city.getValue();
-		String emailID=add_emailID.getText();
-		String country=(String)add_country.getValue();
-		if(customerName!=null && address!=null && mobileNO!=null && city!=null && emailID!=null && country!=null)
+		String customerName=addCustomerName.getText();
+		String address=addAddress.getText();
+		String mobileNO=addMobileNo.getText();
+		String city=(String)addCity.getValue();
+		String emailID=addEmailID.getText();
+		String country=(String)addCountry.getValue();
+		String customerGroup=(String)addCustomerGroup.getValue();
+		String zipCode=addZipCode.getText();
+		String additionalInfo=addAdditionalInfo.getText();
+		String state=(String)addState.getValue();
+		if(customerName!=null && address!=null && mobileNO!=null && city!=null && emailID!=null && country!=null
+				&& null!=customerGroup && null!=zipCode && null!=additionalInfo && null!=state)
 		{
 			System.out.println(customerName+" "+address+" "+mobileNO+" "+city+" "+emailID+" "+country);
 			Customer cust=new Customer();
@@ -72,6 +82,11 @@ public class AddCustomerController implements Initializable{
 		    cust.setCity(new SimpleStringProperty(city));
 		    cust.setEmailID(new SimpleStringProperty(emailID));
 		    cust.setCountry(new SimpleStringProperty(country));
+		    cust.setState(new SimpleStringProperty(state));
+		    cust.setZipCode(new SimpleStringProperty(zipCode));
+		    cust.setCustomerGroup(new SimpleStringProperty(customerGroup));
+		    cust.setAddAdditionalInfo(new SimpleStringProperty(additionalInfo));
+		    
 		    
 			customerService.addCustomer(cust);
 			

@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import javafx.beans.property.SimpleStringProperty;
+
 @Entity
 @Table(name = "customer")
 public class CustomerEntity implements Serializable {
@@ -40,6 +42,23 @@ public class CustomerEntity implements Serializable {
 	
 	@Column(name = "country")
 	private String country;
+	
+	
+	@Column(name = "state")
+	private String state;
+	
+	@Column(name = "customer_group")
+	private String customerGroup;
+	
+	@Column(name = "zipCode")
+	private String zipCode;
+	
+	
+	@Column(name = "addAdditional_info")
+	private String addAdditionalInfo;
+	
+	
+	
 	
 	public String getAddress() {
 		return address;
@@ -83,6 +102,31 @@ public class CustomerEntity implements Serializable {
 	}
 	public void setEmailID(String emailID) {
 		this.emailID = emailID;
+	}
+	
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	public String getCustomerGroup() {
+		return customerGroup;
+	}
+	public void setCustomerGroup(String customerGroup) {
+		this.customerGroup = customerGroup;
+	}
+	public String getZipCode() {
+		return zipCode;
+	}
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+	public String getAddAdditionalInfo() {
+		return addAdditionalInfo;
+	}
+	public void setAddAdditionalInfo(String addAdditionalInfo) {
+		this.addAdditionalInfo = addAdditionalInfo;
 	}
 	
 

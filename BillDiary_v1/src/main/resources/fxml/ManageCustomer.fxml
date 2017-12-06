@@ -16,18 +16,18 @@
             <Pane maxHeight="600.0" maxWidth="995.0" minHeight="600.0" minWidth="990.0" prefHeight="600.0" prefWidth="995.0">
                <children>
                   <Text layoutX="43.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Name" />
-                  <TextField fx:id="customerName" layoutX="140.0" layoutY="29.0" />
+                  <TextField fx:id="customerName" layoutX="140.0" layoutY="29.0" promptText="Enter Customer Name" />
                   <Text layoutX="43.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer ID" />
                   <TextField layoutX="140.0" layoutY="81.0" />
                   <Separator layoutX="8.0" layoutY="133.0" prefHeight="3.0" prefWidth="964.0" />
                   <TableView fx:id="customerTable" editable="true" layoutX="10.0" layoutY="146.0" prefHeight="245.0" prefWidth="960.0">
                     <columns>
-                      <TableColumn id="customerID" editable="false" prefWidth="75.0" text="Customer ID">
+                      <TableColumn id="customerID" editable="false" prefWidth="75.0" text="ID">
                             <cellValueFactory>
 							<PropertyValueFactory property="customerID" />
 							</cellValueFactory>
 					  </TableColumn>
-                      <TableColumn id="customerName" onEditCommit="#setEditedValue" prefWidth="75.0" text="Customer Name">
+                      <TableColumn id="customerName" onEditCommit="#setEditedValue" prefWidth="75.0" text="Name">
                       		<cellValueFactory>
 							<PropertyValueFactory property="customerName" />
 							</cellValueFactory>
@@ -35,6 +35,15 @@
 							<TextFieldTableCell fx:factory="forTableColumn" />
 							</cellFactory>	
 					  </TableColumn>
+                        <TableColumn id="custGroup" onEditCommit="#setEditedValue" prefWidth="75.0" text="Group">
+                           <cellFactory>
+                              <TextFieldTableCell fx:factory="forTableColumn" />
+                           </cellFactory>
+                           <cellValueFactory>
+                              <PropertyValueFactory property="customerGroup" />
+                           </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn id="registrationDate" onEditCommit="#setEditedValue" prefWidth="75.0" text="Reg. Date" />
                         <TableColumn id="address" onEditCommit="#setEditedValue" prefWidth="75.0" text="Address">
                             <cellValueFactory>
 							<PropertyValueFactory property="address" />
@@ -67,6 +76,14 @@
 							<TextFieldTableCell fx:factory="forTableColumn" />
 							</cellFactory>
                         </TableColumn>
+                        <TableColumn id="state" onEditCommit="#setEditedValue" prefWidth="75.0" text="State">
+                           <cellFactory>
+                              <TextFieldTableCell fx:factory="forTableColumn" />
+                           </cellFactory>
+                           <cellValueFactory>
+                              <PropertyValueFactory property="state" />
+                           </cellValueFactory>
+                        </TableColumn>
                         <TableColumn id="country" onEditCommit="#setEditedValue" prefWidth="75.0" text="Country">
                         	<cellValueFactory>
 							<PropertyValueFactory property="country" />
@@ -75,7 +92,14 @@
 							<TextFieldTableCell fx:factory="forTableColumn" />
 							</cellFactory>
                         </TableColumn>
-                        <TableColumn id="joiningDate" onEditCommit="#setEditedValue" prefWidth="75.0" text="Joining Date" />
+                        <TableColumn id="zipCode" onEditCommit="#setEditedValue" prefWidth="75.0" text="ZipCode">
+                           <cellFactory>
+                              <TextFieldTableCell fx:factory="forTableColumn" />
+                           </cellFactory>
+                           <cellValueFactory>
+                              <PropertyValueFactory property="zipCode" />
+                           </cellValueFactory>
+                        </TableColumn>
                         <TableColumn prefWidth="75.0" text="Action">
                        		<cellValueFactory>
 								<PropertyValueFactory property="actionbox" />
@@ -87,8 +111,10 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
-                  <Button layoutX="299.0" layoutY="29.0" mnemonicParsing="false" onAction="#showAddCustomer" prefHeight="25.0" prefWidth="99.0" text="New Customer" />
+                  <Button layoutX="731.0" layoutY="102.0" mnemonicParsing="false" onAction="#showAddCustomer" prefHeight="25.0" prefWidth="116.0" text="New Customer" />
                   <Button layoutX="854.0" layoutY="102.0" mnemonicParsing="false" onAction="#searchCustomer" prefHeight="25.0" prefWidth="116.0" text="Search" />
+                  <Text layoutX="312.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mobile NO" />
+                  <TextField fx:id="mobileNo" layoutX="386.0" layoutY="29.0" promptText="XXXXXXXXXX" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

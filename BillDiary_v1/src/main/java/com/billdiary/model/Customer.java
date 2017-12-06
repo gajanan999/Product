@@ -16,7 +16,9 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
 
 
 public class Customer {
@@ -29,6 +31,17 @@ public class Customer {
 	private Image image;
 
 	public Image getImage() {
+		if(null==image)
+		{
+			try {
+				GeneralUitilies generalUtilities=new GeneralUitilies();
+			image=new Image(generalUtilities.getFile("/images/deleteIcon.jpg").toURI().toString(),15,20,false,false);
+			}
+			catch(Exception e)
+			{
+				System.out.println("image "+ e.getMessage());
+			}
+		}
 		return image;
 	}
 
@@ -66,13 +79,22 @@ public class Customer {
 	 * These fields are only for tableview purpose
 	 * 
 	 */
-	private SimpleStringProperty customerName;
 	private SimpleIntegerProperty customerID;
+	private SimpleStringProperty customerName;
+	private SimpleStringProperty customerGroup;
+	private SimpleStringProperty registrationDate;
 	private SimpleStringProperty address;
 	private SimpleStringProperty emailID;
 	private SimpleStringProperty mobile_no;
 	private SimpleStringProperty city;
+	private SimpleStringProperty state;
 	private SimpleStringProperty country;
+	private SimpleStringProperty zipCode;
+	private SimpleStringProperty addAdditionalInfo;
+
+	
+
+
 	private HBox actionbox;
 	
 	
@@ -128,7 +150,9 @@ public class Customer {
 	public Hyperlink getDeleteHyperlink() {
 		if(deleteHyperlink==null)
 		{
-			deleteHyperlink=new Hyperlink("Delete");
+			deleteHyperlink=new Hyperlink();
+			deleteHyperlink.setFont(Font.font("Arial", 14));
+			deleteHyperlink.setGraphic(new ImageView(getImage()));
 			this.deleteHyperlink.setStyle("-fx-text-fill: #606060;");
 		}
 		return deleteHyperlink;
@@ -195,6 +219,60 @@ public class Customer {
 		this.country = country;
 	}
 
+	public String getCustomerGroup() {
+		if(null==customerGroup)
+		{
+			return "";
+		}
+		else
+		return customerGroup.get();
+	}
+
+	public void setCustomerGroup(SimpleStringProperty customerGroup) {
+		this.customerGroup = customerGroup;
+	}
+
+	public String getState() {
+		if(null==state)
+		{
+			return "";
+		}
+		else
+		return state.get();
+	}
+
+	public void setState(SimpleStringProperty state) {
+		this.state = state;
+	}
+
+	public String getZipCode() {
+		if(null==zipCode)
+		{
+			return "";
+		}
+		else
+		return zipCode.get();
+		
+	}
+
+	public void setZipCode(SimpleStringProperty zipCode) {
+		this.zipCode = zipCode;
+	}
+	public String getAddAdditionalInfo() {
+		if(null==addAdditionalInfo)
+		{
+			return "";
+		}
+		else
+		return addAdditionalInfo.get();
+		
+	}
+
+	public void setAddAdditionalInfo(SimpleStringProperty addAdditionalInfo) {
+		this.addAdditionalInfo = addAdditionalInfo;
+	}
+	
+	
 	public Customer(CustomerEntity customerEnitity)
 	{
 		this.customerID=new SimpleIntegerProperty(customerEnitity.getCustomerID());

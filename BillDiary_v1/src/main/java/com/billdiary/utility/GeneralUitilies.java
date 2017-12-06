@@ -8,9 +8,11 @@ import java.io.InputStream;
 import java.net.URL;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 
 
-@Component
+@Service
 public class GeneralUitilies {
 	
 
@@ -67,6 +69,21 @@ public class GeneralUitilies {
 			System.out.println(e.getMessage());
 		}
 		return inputStream;
+	}
+	
+	public File getFile (String fileURL)
+	{
+		File file=null;
+		InputStream inputStream = null;
+		try {
+			URL url  = getClass().getResource("/images/deleteIcon.jpg");
+			final String filePath=url.getPath();
+			file=new File(filePath);
+		}catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
+		return file;
 	}
 	
 	

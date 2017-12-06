@@ -44,6 +44,11 @@ public class ManageCustomerController implements Initializable {
 	@Autowired
 	public LayoutController layoutController;
 	
+	@FXML
+	TextField mobileNo;
+	
+	
+	
 	List<Customer> customerList=new ArrayList<>();
 	
 	@FXML
@@ -62,11 +67,18 @@ public class ManageCustomerController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
 		//this.customerName.textProperty().bind(this.customer.getName());
-		
+		try {
+			System.out.println(customerTable+" fdf");
 		customerTable.setItems(data);
+		System.out.println("f");
 		populate(retrieveData());
+		System.out.println("ff");
 		filter =new TableFilter(customerTable);
-		
+		System.out.println("fff");
+		}catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
 		
 	}
 	
@@ -89,7 +101,7 @@ public class ManageCustomerController implements Initializable {
 				
 		}catch(Exception e)
 		{
-			System.out.println(e.getMessage());
+			System.out.println("ManageCustomerController" + e.getMessage());
 		}
 		return new ArrayList<Customer>();
 	}
