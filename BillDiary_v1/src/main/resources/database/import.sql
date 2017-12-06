@@ -69,6 +69,7 @@ create table if not exists customer
 						,mobile_no varchar(30)
 						,city varchar(30)
 						,country varchar(30)
+						
 					);
 
 --insert into customer(customer_id,customer_name,address,mobile_no,city,country) values(101,'Gajanan','kfc baner','7709635664','pune','India');

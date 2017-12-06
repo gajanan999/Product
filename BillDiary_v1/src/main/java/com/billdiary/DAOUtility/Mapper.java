@@ -156,4 +156,20 @@ public class Mapper {
 		return productEntity;
 	}
 
+
+	public Customer getCustomerOneModel(CustomerEntity customerEntity) {
+		// TODO Auto-generated method stub
+		Customer cust=new Customer();
+		cust.setCustomerID(new SimpleIntegerProperty(customerEntity.getCustomerID()));
+		//cust.setCustomerID(new SimpleIntegerProperty(customerEntity.getCustomerID()));
+		cust.setCustomerName(new SimpleStringProperty(customerEntity.getCustomerName()));
+		cust.setAddress(new SimpleStringProperty(customerEntity.getAddress()));
+		cust.setCity(new SimpleStringProperty(customerEntity.getCity()));
+		cust.setCountry(new SimpleStringProperty(customerEntity.getCountry()));
+		cust.setMobile_no(new SimpleStringProperty(customerEntity.getMobile_no()));
+		cust.setEmailID(new SimpleStringProperty(customerEntity.getEmailID()));
+		
+		return cust;
+	}
+
 }

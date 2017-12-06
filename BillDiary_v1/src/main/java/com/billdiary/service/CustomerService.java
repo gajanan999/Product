@@ -66,5 +66,18 @@ public class CustomerService {
 		return customerAdded;
 	}
 	
+	public Customer updateCustomer(Customer cust)
+	{
+		Customer updatedCustomer=null;
+		CustomerEntity updatedCustEnitity=null;
+		Mapper m=new Mapper();
+		CustomerEntity custEntity=m.getCustomerEntity(cust);
+		
+		custEntity.setCustomerID(cust.getCustomerID());
+		updatedCustEnitity=customerDAO.updateCustomer(custEntity);
+		updatedCustomer=m.getCustomerOneModel(updatedCustEnitity);
+		return updatedCustomer;
+	}
+	
 	
 }

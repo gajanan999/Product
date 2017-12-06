@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.billdiary.entities.CustomerEntity;
+import com.billdiary.model.Customer;
 
 @Repository
 public class CustomerDAO extends AbstractJpaDAO< CustomerEntity >{
@@ -67,5 +68,13 @@ public class CustomerDAO extends AbstractJpaDAO< CustomerEntity >{
 		create(cust);
 		customerAdded=true;
 		return customerAdded;
+	}
+	
+	@Transactional
+	public CustomerEntity updateCustomer(CustomerEntity custEntity) {
+		// TODO Auto-generated method stub
+		CustomerEntity updatedCustomer=null;
+		updatedCustomer=update(custEntity);
+		return updatedCustomer;
 	}
 }

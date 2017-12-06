@@ -102,8 +102,9 @@ public class ManageCustomerController implements Initializable {
 	        {
 	        	data.add(cust);
 	        	int custID=cust.getCustomerID();
+	        	int index=data.indexOf(cust);
 	        	cust.getDeleteHyperlink().setOnAction(e->deleteButtonClickedThroughHyperlink(custID));
-	        	cust.getSaveHyperlink().setOnAction(e->saveButtonClickedThroughHyperlink(custID,e));
+	        	cust.getSaveHyperlink().setOnAction(e->saveButtonClickedThroughHyperlink(custID,index));
 	        }
     	}
     	
@@ -120,21 +121,18 @@ public class ManageCustomerController implements Initializable {
     }
     
     
-    public <T> void saveButtonClickedThroughHyperlink(int customerId,ActionEvent event)
+    public void saveButtonClickedThroughHyperlink(int customerId,int index)
     {
     		System.out.println(customerId);
-    		
-    		System.out.println(event.getSource());
-    		
-    		System.out.println(event.getClass());
-    		
-    		System.out.println(event.getEventType());
-    		System.out.println(customerTable.getSelectionModel().getFocusedIndex());
-    		
+    		System.out.println(index);
+    		Customer cust=data.get(index);
+    		Customer upcust=customerService.updateCustomer(cust);
+    		data.set(index, upcust);
+    		getRefreshedTable();
     	
     }
     
-    @FXML public void deleteCustomer()
+   /* @FXML public void deleteCustomer()
     {
     	ObservableList < Customer > ObcustomerList;
     	
@@ -170,7 +168,7 @@ public class ManageCustomerController implements Initializable {
     		
     	}
     	
-    }
+    }*/
 
     
     @FXML private <T>void setEditedValue(CellEditEvent<Customer,T> event)
