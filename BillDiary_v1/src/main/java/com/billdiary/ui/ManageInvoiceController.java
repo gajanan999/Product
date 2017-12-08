@@ -199,7 +199,7 @@ public class ManageInvoiceController implements Initializable {
 		for (Customer cust : custList) {
 			customerNameList.add(cust.getCustomerName() + " " + cust.getMobile_no());
 		}
-		TextFields.bindAutoCompletion(invCustName, customerNameList);
+		TextFields.bindAutoCompletion(invCustName, customerNameList).setVisibleRowCount(5);
 	}
 
 	private void refreshProductList() {
@@ -217,7 +217,7 @@ public class ManageInvoiceController implements Initializable {
 			productNameList.add(prod.getProductId() + ": " + prod.getName());
 		}
 
-		TextFields.bindAutoCompletion(invProductName, productNameList);
+		TextFields.bindAutoCompletion(invProductName, productNameList).setVisibleRowCount(5);
 	}
 
 	public void showAddNewCustomerPage() {
