@@ -99,6 +99,15 @@
 		    <version>8.40.14</version>
 		</dependency>
 		
+		<!-- https://mvnrepository.com/artifact/de.jensd/fontawesomefx 
+		Font Library
+		-->
+		<dependency>
+		    <groupId>de.jensd</groupId>
+		    <artifactId>fontawesomefx</artifactId>
+		    <version>8.9</version>
+		</dependency>
+		
 		
 		
   </dependencies>

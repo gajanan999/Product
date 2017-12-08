@@ -20,7 +20,7 @@
             <TextField fx:id="addCustomerName" layoutX="179.0" layoutY="93.0" prefHeight="25.0" prefWidth="189.0" />
             <TextArea fx:id="addAddress" layoutX="556.0" layoutY="85.0" prefHeight="42.0" prefWidth="189.0" />
             <TextField fx:id="addMobileNo" layoutX="179.0" layoutY="175.0" prefHeight="25.0" prefWidth="189.0" />
-            <ChoiceBox fx:id="addCity" layoutX="556.0" layoutY="138.0" prefWidth="150.0" value="Baramati">
+            <ChoiceBox fx:id="addCity" layoutX="556.0" layoutY="138.0" prefWidth="150.0" value="">
             <items>
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="Pune" />
@@ -32,7 +32,7 @@
             </items>
             </ChoiceBox>
             <TextField fx:id="addEmailID" layoutX="179.0" layoutY="215.0" prefHeight="25.0" prefWidth="189.0" />
-            <ChoiceBox fx:id="addCountry" layoutX="556.0" layoutY="215.0" prefWidth="150.0" value="India">
+            <ChoiceBox fx:id="addCountry" layoutX="556.0" layoutY="215.0" prefWidth="150.0" value="">
              <items>
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="India" />
@@ -43,7 +43,7 @@
             </ChoiceBox>
             <Button layoutX="568.0" layoutY="332.0" mnemonicParsing="false" onAction="#addCustomer" prefHeight="25.0" prefWidth="127.0" text="Save" />
             <Text layoutX="424.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="State" />
-            <ChoiceBox fx:id="addState" layoutX="556.0" layoutY="175.0" prefWidth="150.0" value="India">
+            <ChoiceBox fx:id="addState" layoutX="556.0" layoutY="175.0" prefWidth="150.0" value="">
                <items>
                   <FXCollections fx:factory="observableArrayList">
                      <String fx:value="Maharashtra" />
@@ -56,7 +56,7 @@
             <Text layoutX="56.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Additional Information" />
             <TextArea fx:id="addAdditionalInfo" layoutX="179.0" layoutY="262.0" prefHeight="42.0" prefWidth="189.0" />
             <Text layoutX="56.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer Group" />
-            <ChoiceBox fx:id="addCustomerGroup" layoutX="179.0" layoutY="138.0" prefWidth="150.0" value="India">
+            <ChoiceBox fx:id="addCustomerGroup" layoutX="179.0" layoutY="138.0" prefWidth="150.0" value="">
                <items>
                   <FXCollections fx:factory="observableArrayList">
                      <String fx:value="WholeSale" />

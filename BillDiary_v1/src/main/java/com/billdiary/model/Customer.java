@@ -5,19 +5,29 @@ package com.billdiary.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.controlsfx.glyphfont.FontAwesome;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.billdiary.entities.CustomerEntity;
 import com.billdiary.utility.GeneralUitilies;
+import com.billdiary.utility.IconGallery;
 import com.billdiary.utility.URLS;
 
+import aj.org.objectweb.asm.Label;
+import de.jensd.fx.glyphs.GlyphsBuilder;
+import de.jensd.fx.glyphs.GlyphsStack;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.text.Font;
 
 
@@ -30,6 +40,14 @@ public class Customer {
 	
 	private Image image;
 
+	//Label iconLabel = GlyphsDude.createIcon( FontAwesomeIcons.BARS,&quot;40px&quot; );
+	/*
+	Region r=GlyphsStack.create().add(
+			GlyphsBuilder.create(FontAwesome.class).icon(FontAwesomeIcon.SAVE).sizse("10em").build()
+			);
+	*/
+	
+	
 	public Image getImage() {
 		if(null==image)
 		{
@@ -91,10 +109,12 @@ public class Customer {
 	private SimpleStringProperty country;
 	private SimpleStringProperty zipCode;
 	private SimpleStringProperty addAdditionalInfo;
-
 	
-
-
+	IconGallery iconGallery=new IconGallery();
+	
+	//@Autowired
+	//IconGallery iconGallery;
+	
 	private HBox actionbox;
 	
 	
@@ -135,9 +155,16 @@ public class Customer {
 	public Hyperlink getSaveHyperlink() {
 		if(saveHyperlink==null)
 		{
-			saveHyperlink=new Hyperlink("Save");
+			saveHyperlink=new Hyperlink();
+			try {
+			saveHyperlink.setGraphic(iconGallery.getSaveIcon());
 			this.saveHyperlink.setStyle("-fx-text-fill: #606060;");
 			
+			}
+			catch(Exception e)
+			{
+				System.out.println("in saveICon "+e.getMessage());
+			}
 		}
 		return saveHyperlink;
 	}
@@ -151,9 +178,10 @@ public class Customer {
 		if(deleteHyperlink==null)
 		{
 			deleteHyperlink=new Hyperlink();
-			deleteHyperlink.setFont(Font.font("Arial", 14));
-			deleteHyperlink.setGraphic(new ImageView(getImage()));
-			this.deleteHyperlink.setStyle("-fx-text-fill: #606060;");
+			//fontAwesomeTrashIconView.setSize("1.5em");
+			
+			
+			deleteHyperlink.setGraphic(iconGallery.getDeleteIcon());
 		}
 		return deleteHyperlink;
 	}
