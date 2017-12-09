@@ -43,7 +43,12 @@
                               <PropertyValueFactory property="customerGroup" />
                            </cellValueFactory>
                         </TableColumn>
-                        <TableColumn id="registrationDate" onEditCommit="#setEditedValue" prefWidth="75.0" text="Reg. Date" />
+                        <TableColumn id="registrationDate" onEditCommit="#setEditedValue" prefWidth="75.0" text="Reg. Date" >
+                         <cellValueFactory>
+                              <PropertyValueFactory property="registrationDate" />
+                           </cellValueFactory>
+                        </TableColumn>
+                        
                         <TableColumn id="address" onEditCommit="#setEditedValue" prefWidth="75.0" text="Address">
                             <cellValueFactory>
 							<PropertyValueFactory property="address" />

@@ -11,9 +11,10 @@ import com.billdiary.utility.DAOConstants;
 import com.billdiary.utility.URLS;
 
 import javafx.application.Application;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class MainController extends Application{
@@ -49,5 +50,6 @@ public class MainController extends Application{
         stage.setTitle(Constants.APPLICATION_TITLE);
         stage.setScene(scene);
         stage.show();	
+       
 	}
 }

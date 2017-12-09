@@ -1,6 +1,10 @@
 package com.billdiary.DAOUtility;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.billdiary.entities.CustomerEntity;
@@ -95,7 +99,7 @@ public class Mapper {
 	 */
 	public List<Customer> getCustomerModels(List<CustomerEntity> customerEntityList) {
 		List<Customer> customerList=new ArrayList<>();
-		
+		try {
 		for(CustomerEntity customerEntity:customerEntityList)
 		{
 			Customer cust=new Customer();
@@ -111,10 +115,21 @@ public class Mapper {
 			cust.setState(new SimpleStringProperty(customerEntity.getState()));
 			cust.setCustomerGroup(new SimpleStringProperty(customerEntity.getCustomerGroup()));
 			cust.setZipCode(new SimpleStringProperty(customerEntity.getZipCode()));
+			DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+			if(null!=customerEntity.getRegDate()) {
+		    String strDate = dateFormat.format(customerEntity.getRegDate());
+		    cust.setRegistrationDate(new SimpleStringProperty(strDate));
+			}else {
+				cust.setRegistrationDate(new SimpleStringProperty(""));
+			}
 			
 			customerList.add(cust);
 		}
-		
+		}catch(Exception e)
+		{
+			System.out.println("bnmk"+e.getMessage());
+			e.printStackTrace();
+		}
 		return customerList;
 	}
 
@@ -133,7 +148,14 @@ public class Mapper {
 		customerEntity.setState(cust.getState());
 		customerEntity.setCustomerGroup(cust.getCustomerGroup());
 		customerEntity.setZipCode(cust.getZipCode());
-		
+		DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+		Date regDate=null;
+		try {
+			regDate = df.parse(cust.getRegistrationDate());
+		} catch (ParseException e) {
+			System.out.println("Exception while date parsing"+e.getMessage());
+		}
+		customerEntity.setRegDate(regDate);
 		return customerEntity;
 	}
 

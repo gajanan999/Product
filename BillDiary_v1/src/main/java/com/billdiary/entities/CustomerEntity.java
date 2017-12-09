@@ -1,6 +1,7 @@
 package com.billdiary.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -57,9 +58,16 @@ public class CustomerEntity implements Serializable {
 	@Column(name = "addAdditional_info")
 	private String addAdditionalInfo;
 	
+	@Column(name = "regDate")
+	private Date regDate;
 	
 	
-	
+	public Date getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
+	}
 	public String getAddress() {
 		return address;
 	}

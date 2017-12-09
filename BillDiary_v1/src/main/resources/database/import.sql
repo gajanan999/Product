@@ -68,10 +68,11 @@ create table if not exists customer
 						,address varchar(30)
 						,email_id varchar(30)
 						,mobile_no varchar(30)
+						,addtional_info varchar(30)
+						,regDate Date
 						,city varchar(30)
 						,state varchar(30)
 						,country varchar(30)
-						,addtional_info varchar(30)
 						,zipCode varchar(30)
 						
 					);

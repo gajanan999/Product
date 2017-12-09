@@ -1,6 +1,9 @@
 package com.billdiary.ui;
 
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,8 @@ public class AddCustomerController implements Initializable{
 
 	
 	public String parentName;
+	
+	private Date regDate;
 	
 	@Autowired
 	private CustomerService customerService;
@@ -71,6 +76,8 @@ public class AddCustomerController implements Initializable{
 		String zipCode=addZipCode.getText();
 		String additionalInfo=addAdditionalInfo.getText();
 		String state=(String)addState.getValue();
+		regDate=new Date();
+		
 		if(customerName!=null && address!=null && mobileNO!=null && city!=null && emailID!=null && country!=null
 				&& null!=customerGroup && null!=zipCode && null!=additionalInfo && null!=state)
 		{
@@ -86,7 +93,9 @@ public class AddCustomerController implements Initializable{
 		    cust.setZipCode(new SimpleStringProperty(zipCode));
 		    cust.setCustomerGroup(new SimpleStringProperty(customerGroup));
 		    cust.setAddAdditionalInfo(new SimpleStringProperty(additionalInfo));
-		    
+		    DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		    String strDate = dateFormat.format(regDate);
+		    cust.setRegistrationDate(new SimpleStringProperty(strDate));
 		    
 			customerService.addCustomer(cust);
 			

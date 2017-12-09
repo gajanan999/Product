@@ -22,6 +22,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
+import javafx.geometry.Insets;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.image.Image;
@@ -38,7 +39,7 @@ public class Customer {
 	@Autowired
 	GeneralUitilies generalUtilities;
 	
-	private Image image;
+//	private Image image;
 
 	//Label iconLabel = GlyphsDude.createIcon( FontAwesomeIcons.BARS,&quot;40px&quot; );
 	/*
@@ -47,7 +48,7 @@ public class Customer {
 			);
 	*/
 	
-	
+	/*
 	public Image getImage() {
 		if(null==image)
 		{
@@ -65,34 +66,8 @@ public class Customer {
 
 	public void setImage(Image image) {
 		this.image = image;
-	}
-
-
-	/**
-	 * This fields are only for searching purpose
-	 */
-	private StringProperty name = new SimpleStringProperty();
-	private StringProperty ID = new SimpleStringProperty();
+	}*/
 	
-	public StringProperty getID() {
-		return ID;
-	}
-	
-	public void setID(final String ID)
-	{
-		this.name.set(ID);
-	}
-	
-	public void setName(final String custName)
-	{
-		this.name.set(custName);
-	}
-
-	public StringProperty getName() {
-		return name;
-	}
-
-
 	/**
 	 * These fields are only for tableview purpose
 	 * 
@@ -109,6 +84,10 @@ public class Customer {
 	private SimpleStringProperty country;
 	private SimpleStringProperty zipCode;
 	private SimpleStringProperty addAdditionalInfo;
+	
+	
+	
+	
 	
 	IconGallery iconGallery=new IconGallery();
 	
@@ -158,6 +137,7 @@ public class Customer {
 			saveHyperlink=new Hyperlink();
 			try {
 			saveHyperlink.setGraphic(iconGallery.getSaveIcon());
+			saveHyperlink.setTooltip(iconGallery.getSaveToolTip());
 			this.saveHyperlink.setStyle("-fx-text-fill: #606060;");
 			
 			}
@@ -182,6 +162,7 @@ public class Customer {
 			
 			
 			deleteHyperlink.setGraphic(iconGallery.getDeleteIcon());
+			deleteHyperlink.setTooltip(iconGallery.getDeleteToolTip());
 		}
 		return deleteHyperlink;
 	}
@@ -299,7 +280,15 @@ public class Customer {
 	public void setAddAdditionalInfo(SimpleStringProperty addAdditionalInfo) {
 		this.addAdditionalInfo = addAdditionalInfo;
 	}
-	
+	public String getRegistrationDate() {
+		return registrationDate.get();
+	}
+
+	public void setRegistrationDate(SimpleStringProperty registrationDate) {
+		this.registrationDate = registrationDate;
+	}
+
+
 	
 	public Customer(CustomerEntity customerEnitity)
 	{
@@ -310,7 +299,7 @@ public class Customer {
 		this.city=new SimpleStringProperty(customerEnitity.getCity());
 		this.country=new SimpleStringProperty(customerEnitity.getCountry());
 		this.mobile_no=new SimpleStringProperty(customerEnitity.getMobile_no());
-		this.image=new Image(generalUtilities.getFileAsInputStream (URLS.SAVE_IMAGE));
+	//	this.image=new Image(generalUtilities.getFileAsInputStream (URLS.SAVE_IMAGE));
 		this.deleteHyperlink=new Hyperlink("Delete");
 		this.deleteHyperlink.setStyle("-fx-text-fill: #606060;");
 		this.saveHyperlink=new Hyperlink("Save");

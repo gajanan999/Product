@@ -5,10 +5,14 @@ package com.billdiary.model;
 
 
 import org.springframework.stereotype.Component;
+
+import com.billdiary.utility.IconGallery;
+
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
 
 
@@ -42,6 +46,7 @@ public class Product {
 	private Hyperlink delete;
 	
 	private Hyperlink save;
+	IconGallery iconGallery=new IconGallery();
 	
 	public Product()
 	{
@@ -58,9 +63,11 @@ public class Product {
 		this.description = new SimpleStringProperty(descriptionOfProduct);
 		this.stock = new SimpleIntegerProperty(stockOfProduct);
 		this.discount =new SimpleDoubleProperty (Discount);
-		this.delete = new Hyperlink("Delete");
+		this.delete = new Hyperlink();
+		this.delete.setGraphic(iconGallery.getDeleteIcon());
 		this.delete.setStyle("-fx-text-fill: #606060;");
-		this.save=new Hyperlink("Save");
+		this.save=new Hyperlink();
+		this.save.setGraphic(iconGallery.getSaveIcon());
 		this.save.setStyle("-fx-text-fill: #606060;");
 		this.action=new HBox(delete,save);
 	}
@@ -110,7 +117,9 @@ public class Product {
 	public Hyperlink getDelete() {
 		if(delete==null)
 		{
-		 delete=new Hyperlink("Delete");
+		 delete=new Hyperlink();
+		 delete.setGraphic(iconGallery.getDeleteIcon());
+		 delete.setTooltip(iconGallery.getDeleteToolTip());
 		 this.delete.setStyle("-fx-text-fill: #606060;");
 		}
 		return delete;
@@ -121,7 +130,10 @@ public class Product {
 	public Hyperlink getSave() {
 		if(save==null)
 		{
-			save=new Hyperlink("Save");
+			save=new Hyperlink();
+			save.setGraphic(iconGallery.getSaveIcon());
+			save.setTooltip(iconGallery.getSaveToolTip());
+			
 			this.save.setStyle("-fx-text-fill: #606060;");
 		}
 		
