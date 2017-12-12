@@ -180,6 +180,23 @@ public class ManageInvoiceController implements Initializable {
 				}
 		});
 		
+		totalAmount.focusedProperty().addListener((ov, oldV, newV) -> {
+			if (!newV){
+				System.out.println("hi");
+					double total=Double.parseDouble(totalAmount.getText());
+					double disc;
+					if(discount.getText().isEmpty()) {
+						discount.setText("0");
+						disc=0.0;
+					}else {
+					disc=Double.parseDouble(discount.getText());
+					}
+					total=total-(total*(disc/100));
+					finalAmount.setText(String.valueOf(total));
+				}
+		});
+		
+		
 		finalAmount.textProperty().bindBidirectional(bigFinalAmount.textProperty());
 	}
 

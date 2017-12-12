@@ -121,7 +121,10 @@
                   <Text layoutX="682.0" layoutY="573.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Press CTL+P for save and Print" />
                   <Text layoutX="759.0" layoutY="540.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Amount Due" />
                   <TextField fx:id="amountDue" layoutX="842.0" layoutY="523.0" prefHeight="25.0" prefWidth="135.0" />
-                  <TextField fx:id="bigFinalAmount" layoutX="836.0" layoutY="17.0" prefHeight="61.0" prefWidth="142.0" />
+                  <TextField fx:id="bigFinalAmount" layoutX="836.0" layoutY="17.0" prefHeight="61.0" prefWidth="142.0">
+                     <font>
+                        <Font name="Arial" size="24.0" />
+                     </font></TextField>
                   <Text layoutX="889.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TOTAL">
                      <font>
                         <Font name="Calibri" size="14.0" />
