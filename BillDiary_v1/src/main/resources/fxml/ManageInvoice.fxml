@@ -100,18 +100,33 @@
                   <Text layoutX="503.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Due Date" />
                   <Text layoutX="37.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Product Name" />
                   <Text layoutX="301.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity" />
-                  <Text layoutX="503.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Price" />
-                  <TextField fx:id="totalAmount" layoutX="842.0" layoutY="467.0" prefHeight="25.0" prefWidth="135.0" />
-                  <Text layoutX="759.0" layoutY="484.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Amount" />
-                  <TextField fx:id="discount" layoutX="842.0" layoutY="500.0" prefHeight="25.0" prefWidth="79.0" />
-                  <TextField fx:id="finalAmount" layoutX="842.0" layoutY="534.0" prefHeight="25.0" prefWidth="135.0" />
-                  <Text layoutX="759.0" layoutY="517.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Discount(%)" />
-                  <Text layoutX="759.0" layoutY="551.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Final Amount" />
+                  <Text layoutX="503.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unit Price" />
+                  <TextField fx:id="totalAmount" layoutX="843.0" layoutY="459.0" prefHeight="25.0" prefWidth="135.0" />
+                  <Text layoutX="758.0" layoutY="476.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Amount" />
+                  <TextField fx:id="discount" layoutX="643.0" layoutY="459.0" prefHeight="25.0" prefWidth="79.0" />
+                  <TextField fx:id="finalAmount" layoutX="842.0" layoutY="493.0" prefHeight="25.0" prefWidth="135.0" />
+                  <Text layoutX="553.0" layoutY="476.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Discount(%)" />
+                  <Text layoutX="759.0" layoutY="510.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Final Amount" />
                   <Text layoutX="503.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Invoice number" />
                   <Text fx:id="invNO" layoutX="615.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X" />
                   <Text layoutX="503.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
                   <Text fx:id="invDate" layoutX="594.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2001-01-01" />
                   <Button layoutX="291.0" layoutY="29.0" mnemonicParsing="false" onAction="#showAddNewCustomerPage" prefHeight="25.0" prefWidth="122.0" text="Add New Customer" />
+                  <MenuButton layoutX="851.0" layoutY="554.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="117.0" text="Save and Print">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Save" />
+                      <MenuItem mnemonicParsing="false" text="Save And Print" />
+                    </items>
+                  </MenuButton>
+                  <Text layoutX="682.0" layoutY="573.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Press CTL+P for save and Print" />
+                  <Text layoutX="759.0" layoutY="540.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Amount Due" />
+                  <TextField fx:id="amountDue" layoutX="842.0" layoutY="523.0" prefHeight="25.0" prefWidth="135.0" />
+                  <TextField fx:id="bigFinalAmount" layoutX="836.0" layoutY="17.0" prefHeight="61.0" prefWidth="142.0" />
+                  <Text layoutX="889.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TOTAL">
+                     <font>
+                        <Font name="Calibri" size="14.0" />
+                     </font>
+                  </Text>
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

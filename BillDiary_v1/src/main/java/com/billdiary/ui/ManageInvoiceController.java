@@ -24,7 +24,7 @@ import com.billdiary.utility.URLS;
 
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -59,6 +59,10 @@ public class ManageInvoiceController implements Initializable {
 
 	@FXML
 	TextField totalAmount;
+	@FXML
+	TextField bigFinalAmount;
+	@FXML
+	TextField amountDue;
 	@FXML
 	TextField discount;
 	@FXML
@@ -167,6 +171,16 @@ public class ManageInvoiceController implements Initializable {
 			}
 		});
 
+		discount.focusedProperty().addListener((ov, oldV, newV) -> {
+			if (!newV){
+					double total=Double.parseDouble(totalAmount.getText());
+					double disc=Double.parseDouble(discount.getText());
+					total=total-(total*(disc/100));
+					finalAmount.setText(String.valueOf(total));
+				}
+		});
+		
+		finalAmount.textProperty().bindBidirectional(bigFinalAmount.textProperty());
 	}
 
 	private void refreshInvoiceTable() {
@@ -263,6 +277,7 @@ public class ManageInvoiceController implements Initializable {
 			pr.getDelete().setOnAction(e->deleteButtonClickedThroughHyperlink(index));
 			}
 			productTable.setItems(data);
+			calculateTotalAmount();
 			invProductName.clear();
 			invProductPrice.clear();
 			invProductQuantity.clear();
@@ -273,6 +288,25 @@ public class ManageInvoiceController implements Initializable {
 	
 	
 	
+	private void calculateTotalAmount() {
+		// TODO Auto-generated method stub
+		//totalAmount
+		
+		//double d=((TableColumn<Product, Integer>) productTable).getTableView().getItems().get(event.getTablePosition().getRow());
+		double total=0;
+		for (Product row : productTable.getItems()) {
+		      /*for (TableColumn column : columns) {
+		        values.add(
+		          (String) column.
+		          getCellObservableValue(row).
+		          getValue());
+		      }*/
+			total=total+row.getTotalPrice();
+			
+		    }
+		totalAmount.setText(String.valueOf(total));
+	}
+
 	private void deleteButtonClickedThroughHyperlink(int index) {
 		// TODO Auto-generated method stub
 		
